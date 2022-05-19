@@ -1,8 +1,21 @@
-.navbar{
-    background-color:yellowgreen ;
-    padding: 2px;
+li{
+    list-style: none;
 }
+
+.navbar{
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    background-color:yellowgreen ;
+    padding: 5px;
+}
+
 
 .logo{
     width: 5%;
+}
+
+.cart{
+    width: 2%;
+    padding: 5px;
 }
