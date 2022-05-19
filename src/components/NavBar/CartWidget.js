@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavItem} from 'reactstrap';
-import iconoCarrito from "./Imagenes/iconoCarrito.png";
-import "./NavBar/NavBar.css";
+import iconoCarrito from "../Imagenes/iconoCarrito.png";
+import "./NavBar.css";
 
 const CartWidget = () =>{
     return(
