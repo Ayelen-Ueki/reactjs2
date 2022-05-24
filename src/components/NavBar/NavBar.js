@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, NavbarBrand, DropdownMenu, DropdownItem } from "reactstrap";
 import "./NavBar.css";
-import Logo from "../Imagenes/Logo.png";
+import Logo from "../images/Logo.png";
 import CartWidget from "./CartWidget";
 
 const NavBar = () => {
