@@ -1,3 +1,5 @@
+import "./ItemList.css";
+import ItemCount from "../itemCount/ItemCount";
 import {
   Card,
   CardImg,
@@ -5,54 +7,45 @@ import {
   CardTitle,
   CardSubtitle,
   CardText,
-  Button,
 } from "reactstrap";
-import "./ItemList.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const ItemList = ({ image, title, price, description, stock }) => {
-  //En este item recibo las propiedades de cada tarjeta para mostrarlo, es un componente de presentación.
-  const [count, setCount] = useState(0);
+const ItemList = () => {
+  const [item, setItem] = useState({});
 
-  const addCount = () => {
-    if (count < stock) {
-      setCount(count + 1);
-    }
+  const getItems = () => {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(item));
+    }, 2000);
   };
 
-  const removeCount = () => {
-    setCount(count - 1);
-  };
+  useEffect(() => {
+    getItems().then((res) => {
+      setItem(res);
+    });
+  }, []);
 
   return (
-    <Card>
-      <CardImg
-        alt="Card image cap"
-        img
-        src={`../images/${image}`}
-        width="100%"
-      />
-      <CardBody>
-        <CardTitle tag="h5">{title}</CardTitle>
-        <CardSubtitle className="mb-2 text-muted" tag="h6">
-          {description}
-        </CardSubtitle>
-        <CardText>{price}</CardText>
-        <div className="counter">
-          <Button
-            className="counterButton"
-            onClick={removeCount}
-            disabled={count === 0}
-          >
-            -
-          </Button>
-          <p>{count}</p>
-          <Button className="counterButton" onClick={addCount}>
-            +
-          </Button>
-        </div>
-      </CardBody>
-    </Card>
+    <div>
+      {item.map((items) => {
+        const { title, price, image, description, id } = items;
+        return (
+          <div key={id}>
+            <Card>
+              <CardImg alt="Card image cap" img src={image} width="100%" />
+              <CardBody>
+                <CardTitle tag="h5">{title}</CardTitle>
+                <CardSubtitle className="mb-2 text-muted" tag="h6">
+                  {description}
+                </CardSubtitle>
+                <CardText>{price}</CardText>
+              </CardBody>
+            </Card>
+          </div>
+        );
+      })}
+      <ItemCount />
+    </div>
   );
 };
 
