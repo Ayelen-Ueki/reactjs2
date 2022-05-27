@@ -1,13 +1,27 @@
 import React from "react";
 import ItemList from "../itemList/ItemList";
-import './ItemListContainer.css';
-
+import "./ItemListContainer.css";
+import items from "../item/Item";
+import { useState, useEffect } from "react";
 
 const ItemListContainer = () => {
+  const [products, setProducts] = useState([]);
 
-  return ( 
+  const getItems = () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => resolve(items));
+    }, 2000);
+  };
+
+  useEffect(() => {
+    getItems().then((res) => {
+      setProducts(res);
+    });
+  }, []);
+
+  return (
     <div className="container">
-      <ItemList/>
+      <ItemList data={products}/>
       {/* <ItemList
       image={'alfajorcitos.png'}
       title={'Alfajorcitos'}
@@ -33,7 +47,7 @@ const ItemListContainer = () => {
       stock={5}
       /> */}
     </div>
-  )
+  );
 };
 
 export default ItemListContainer;

@@ -1,6 +1,5 @@
-const Item = () => {
-  const items = 
-[    {
+ const items = [
+    {
       image: "alfajorcitos.png",
       title: "Alfajorcitos",
       price: 600,
@@ -12,7 +11,7 @@ const Item = () => {
       image: "veganCookies.png",
       title: "Cookies",
       price: 840,
-      description: "Cookies veganas. (Precio por docena))",
+      description: "Cookies veganas. (Precio por docena)",
       id: 2,
     },
     {
@@ -21,8 +20,8 @@ const Item = () => {
       price: 1800,
       description: "Torta mocha. (Precio unitario)",
       id: 3,
-    },]
-console.log(items)
-}
+    },
+  ];
 
-export default Item;
+
+export default items;

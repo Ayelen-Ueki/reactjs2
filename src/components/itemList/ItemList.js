@@ -8,26 +8,11 @@ import {
   CardSubtitle,
   CardText,
 } from "reactstrap";
-import { useState, useEffect } from "react";
 
-const ItemList = () => {
-  const [item, setItem] = useState({});
-
-  const getItems = () => {
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(item));
-    }, 2000);
-  };
-
-  useEffect(() => {
-    getItems().then((res) => {
-      setItem(res);
-    });
-  }, []);
-
+const ItemList = ({data}) => {
   return (
     <div>
-      {item.map((items) => {
+      {data.map((items) => {
         const { title, price, image, description, id } = items;
         return (
           <div key={id}>
