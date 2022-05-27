@@ -26,10 +26,10 @@ const ItemList = ({data}) => {
                 <CardText>{price}</CardText>
               </CardBody>
             </Card>
-          </div>
+            <ItemCount />
+          </div>      
         );
       })}
-      <ItemCount />
     </div>
   );
 };
