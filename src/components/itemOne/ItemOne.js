@@ -8,7 +8,7 @@ import {
   CardText,
 } from "reactstrap";
 
-const ItemOne = ({title, price, image, description}) => {
+const ItemOne = ({title, price, image, description, stock}) => {
     return (
         <div>
           <Card>
@@ -21,7 +21,7 @@ const ItemOne = ({title, price, image, description}) => {
               <CardText>{price}</CardText>
             </CardBody>
           </Card>
-          <ItemCount />
+          <ItemCount stock={stock}/>
         </div>      
       );
 }

@@ -3,7 +3,7 @@ import { Button } from 'reactstrap';
 import "./ItemCount.css";
 
 
-const ItemCount = (stock) => {
+const ItemCount = ({stock}) => {
     const [count, setCount] = useState(0);
 
     const addCount = () => {
