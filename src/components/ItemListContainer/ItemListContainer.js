@@ -9,8 +9,10 @@ const ItemListContainer = () => {
 
   const getItems = () => {
     return new Promise((resolve, reject) => {
-      setTimeout(() => resolve(items));
-    }, 2000); 
+      setTimeout(() => {
+        resolve(items);
+      }, 2000);
+    });
   };
 
   useEffect(() => {
@@ -21,7 +23,7 @@ const ItemListContainer = () => {
 
   return (
     <div className="container">
-      <ItemList data={products}/>
+      <ItemList data={products} />
       {/* <ItemList
       image={'alfajorcitos.png'}
       title={'Alfajorcitos'}
