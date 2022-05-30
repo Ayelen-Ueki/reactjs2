@@ -8,7 +8,7 @@ import {
   CardText,
 } from "reactstrap";
 
-const ItemOne = ({title, price, image, description, stock}) => {
+const ItemCards = ({title, price, image, description, stock}) => {
     return (
         <div>
           <Card>
@@ -26,4 +26,4 @@ const ItemOne = ({title, price, image, description, stock}) => {
       );
 }
 
-export default ItemOne;
+export default ItemCards;

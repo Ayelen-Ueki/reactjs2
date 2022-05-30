@@ -26,5 +26,17 @@
     },
   ];
 
+  const item = 
+    {
+      image: "alfajorcitos.png",
+      title: "Alfajorcitos",
+      price: 600,
+      description:
+        "Deliciosos alfajorcitos de dulce de leche. (Precio por docena)",
+      id: 1,
+      stock: 15,
+    }
+
 
 export default items;
+export {item};

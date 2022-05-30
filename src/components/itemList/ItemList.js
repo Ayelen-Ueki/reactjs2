@@ -1,5 +1,5 @@
 import './ItemList.css';
-import ItemOne from "../itemOne/ItemOne";
+import ItemCards from "../ItemCards/ItemCards";
 
 const ItemList = ({data}) => {
   return (
@@ -7,7 +7,7 @@ const ItemList = ({data}) => {
       {data.map(({title, price, image, description, id, stock}) => {
         return (
           <div key={id} className="item">
-            <ItemOne title={title} price={price} image={image} description={description} stock={stock}/>
+            <ItemCards title={title} price={price} image={image} description={description} stock={stock}/>
           </div>      
         );
       })}
