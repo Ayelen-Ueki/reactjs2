@@ -7,7 +7,7 @@ const ItemList = ({data}) => {
       {data.map(({title, price, image, description, id, stock}) => {
         return (
           <div key={id} className="item">
-            <ItemCards title={title} price={price} image={image} description={description} stock={stock}/>
+            <ItemCards title={title} price={price} image={image} description={description} stock={stock} id={id}/>
           </div>      
         );
       })}

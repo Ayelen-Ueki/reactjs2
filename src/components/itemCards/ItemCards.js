@@ -1,4 +1,3 @@
-import ItemCount from "../itemCount/ItemCount";
 import {
   Card,
   CardImg,
@@ -6,12 +5,15 @@ import {
   CardTitle,
   CardSubtitle,
   CardText,
+  Button
 } from "reactstrap";
+import { Link } from "react-router-dom";
+import ItemCount from "../itemCount/ItemCount";
 
-const ItemCards = ({title, price, image, description, stock}) => {
+const ItemCards = ({title, price, image, description, stock, id}) => {
     return (
         <div>
-          <Card>
+          <Card>  
             <CardImg alt="Card image cap" img src={image} width="100%" />
             <CardBody>
               <CardTitle tag="h5">{title}</CardTitle>
@@ -19,6 +21,9 @@ const ItemCards = ({title, price, image, description, stock}) => {
                 {description}
               </CardSubtitle>
               <CardText>{price}</CardText>
+              <Button>
+                <Link style={{textDecoration: 'none', color: "black"}} to={`/product/${id}`}>Ver detalle</Link>
+                </Button>
             </CardBody>
           </Card>
           <ItemCount stock={stock}/>
