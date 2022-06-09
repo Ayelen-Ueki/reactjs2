@@ -1,5 +1,13 @@
 import React from "react";
-import { Navbar, NavbarBrand, DropdownMenu, DropdownItem } from "reactstrap";
+import {
+  Navbar,
+  NavbarBrand,
+  DropdownMenu,
+  DropdownItem,
+  Dropdown,
+  DropdownToggle,
+  Button,
+} from "reactstrap";
 import "./NavBar.css";
 import Logo from "../images/Logo.png";
 import CartWidget from "./CartWidget";
@@ -10,20 +18,47 @@ const NavBar = () => {
     <div>
       <Navbar expand="md" className="navbar">
         <NavbarBrand href="/">
-        <Link to='/'><img src={Logo} alt="logo" className="logo" /></Link>
-          <h1> Feelin'it Pastelería </h1>
+          <Link to="/">
+            <img src={Logo} alt="logo" className="logo" />
+          </Link>
+          <h1 > Feelin'it Pastelería </h1>
         </NavbarBrand>
         <div>
           <Navbar color="faded">
-            <DropdownMenu right>
-              <DropdownItem><Link to='/'>Inicio</Link></DropdownItem>
-              <DropdownItem><Link to='/Nosotros'>Nosotros</Link></DropdownItem>
-              <DropdownItem><Link to='/Recetas'>Recetas</Link></DropdownItem>
-              <DropdownItem><Link to='/Contacto'>Contacto</Link></DropdownItem>
-            </DropdownMenu>
+            <Button>
+              <Link className="link" to="/">Inicio</Link>
+            </Button>
+            <Button>
+              <Link className="link"  to="/Nosotros">Nosotros</Link>
+            </Button>
+            <Button>
+              <Link className="link"  to="/Recetas">Recetas</Link>
+            </Button>
+            <Button>
+              <Link className="link"  to="/Contacto">Contacto</Link>
+            </Button>
+
+            <div className="d-flex justify-content-center p-5">
+              <Dropdown toggle={function noRefCheck() {}}>
+                <DropdownToggle caret>Categorías</DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem>
+                    <Link className="link"  to="/category/Alfajores">Alfajores</Link>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <Link className="link"  to="/category/Tortas">Tortas</Link>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <Link className="link"  to="/category/Cookies">Cookies</Link>
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </div>
           </Navbar>
         </div>
-        <Link to='/Cart'><CartWidget /></Link>
+        <Link to="/Cart">
+          <CartWidget />
+        </Link>
       </Navbar>
     </div>
   );

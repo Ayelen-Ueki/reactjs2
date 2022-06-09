@@ -7,6 +7,7 @@
         "Deliciosos alfajorcitos de dulce de leche. (Precio por docena)",
       id: 1,
       stock: 15,
+      category: "Alfajores",
     },
     {
       image: "veganCookies.png",
@@ -15,6 +16,7 @@
       description: "Cookies veganas. (Precio por docena)",
       id: 2,
       stock: 10,
+      category: "Cookies",
     },
     {
       image: "tortaMocha.png",
@@ -23,6 +25,7 @@
       description: "Torta mocha. (Precio unitario)",
       id: 3,
       stock: 15,
+      category: "Tortas",
     },
   ];
 
@@ -35,6 +38,7 @@
         "Deliciosos alfajorcitos de dulce de leche. (Precio por docena)",
       id: 1,
       stock: 15,
+      category: "Alfajores",
     }
 
 

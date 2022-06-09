@@ -20,6 +20,7 @@ function App() {
           <Route path="/Contacto" element={<Contacto/>} />
           <Route path="/Recetas" element={<Recetas/>} />
           <Route path="/product/:id" element={<ItemDetailContainer />} />
+          <Route path="/category/:category" element={<ItemDetailContainer />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

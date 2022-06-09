@@ -1,11 +1,11 @@
-import ItemCards from "../itemCards/ItemCards";
+import ItemCardDetail from "../itemCardDetail/ItemCardDetail";
 import "./ItemDetail.css";
 
 const ItemDetail = ({data}) =>
     {
       return(
         <div className="item">
-            <ItemCards title={data.title} price={data.price} image={data.image} description={data.description} stock={data.stock} id={data.id} />
+            <ItemCardDetail title={data.title} price={data.price} image={data.image} description={data.description} stock={data.stock} id={data.id} />
         </div>
       )
     }
