@@ -11,7 +11,7 @@ const Cart = () => {
         <p>Aún no hay productos agregados</p>
         <Link to="/Inicio">¿Quieres ver nuestro catálogo?</Link>
       </>
-    );
+    )
   }
   {cartListItems.map(({ title, price, image, description, id, stock }) => {
   return (
@@ -31,8 +31,8 @@ const Cart = () => {
         );
 
     </div>
-  );
+  )
 })}
-};
+}
 
 export default Cart;
