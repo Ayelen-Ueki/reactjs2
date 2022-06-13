@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "reactstrap";
 import "./ItemCount.css";
 
+
 const ItemCount = ({ stock, setOrder, order, setShowButton }) => {
   const addCount = () => {
     if (order < stock) {

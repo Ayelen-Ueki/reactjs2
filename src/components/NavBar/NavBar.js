@@ -56,7 +56,7 @@ const NavBar = () => {
             </div>
           </Navbar>
         </div>
-        <Link to="/Cart">
+        <Link to="/Carrito">
           <CartWidget />
         </Link>
       </Navbar>
