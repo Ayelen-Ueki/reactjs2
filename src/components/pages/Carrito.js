@@ -1,10 +1,9 @@
-import "./ItemList.css";
 import ItemCards from "../itemCards/ItemCards";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const { cartListItems } = useContext();
+  const { cartListItems, setToalPrice, totalPrice } = useContext();
   {
     cartListItems.length === 0 && (
       <>
@@ -13,7 +12,7 @@ const Cart = () => {
       </>
     )
   }
-  {cartListItems.map(({ title, price, image, description, id, stock }) => {
+  {cartListItems.map(({ title, price, image, description, id, stock, category }) => {
   return (
     <div className="items">
       
@@ -26,6 +25,7 @@ const Cart = () => {
               description={description}
               stock={stock}
               id={id}
+              category={category}
             />
           </div>
         );

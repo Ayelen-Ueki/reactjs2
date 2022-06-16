@@ -18,6 +18,7 @@ const NavBar = () => {
     <div>
       <Navbar expand="md" className="navbar">
         <NavbarBrand href="/">
+          {/* Los Links nos van a permitir que al clickar sobre el objeto al que envuelven podamos viajar a las distintas páginas de nuestro sitio según lo indiquemos en el "to". Estas páginas van a estar definidas en donde llamamos a nuestras Routes */}
           <Link to="/">
             <img src={Logo} alt="logo" className="logo" />
           </Link>
