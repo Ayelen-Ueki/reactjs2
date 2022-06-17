@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -12,8 +12,19 @@ import "./NavBar.css";
 import Logo from "../images/Logo.png";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 const NavBar = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const open = Boolean(anchorEl);
+  const categories = ["alfajores", "cookies", "tortas"]
   return (
     <div>
       <Navbar expand="md" className="navbar">
@@ -22,21 +33,29 @@ const NavBar = () => {
           <Link to="/">
             <img src={Logo} alt="logo" className="logo" />
           </Link>
-          <h1 > Feelin'it Pastelería </h1>
+          <h1> Feelin'it Pastelería </h1>
         </NavbarBrand>
         <div>
           <Navbar color="faded">
             <Button>
-              <Link className="link" to="/">Inicio</Link>
+              <Link className="link" to="/">
+                Inicio
+              </Link>
             </Button>
             <Button>
-              <Link className="link"  to="/Nosotros">Nosotros</Link>
+              <Link className="link" to="/Nosotros">
+                Nosotros
+              </Link>
             </Button>
             <Button>
-              <Link className="link"  to="/Recetas">Recetas</Link>
+              <Link className="link" to="/Recetas">
+                Recetas
+              </Link>
             </Button>
             <Button>
-              <Link className="link"  to="/Contacto">Contacto</Link>
+              <Link className="link" to="/Contacto">
+                Contacto
+              </Link>
             </Button>
 
             <div className="d-flex justify-content-center p-5">
@@ -44,17 +63,52 @@ const NavBar = () => {
                 <DropdownToggle caret>Categorías</DropdownToggle>
                 <DropdownMenu>
                   <DropdownItem>
-                    <Link className="link"  to="/category/Alfajores">Alfajores</Link>
+                    <Link className="link" to="/category/Alfajores">
+                      Alfajores
+                    </Link>
                   </DropdownItem>
                   <DropdownItem>
-                    <Link className="link"  to="/category/Tortas">Tortas</Link>
+                    <Link className="link" to="/category/Tortas">
+                      Tortas
+                    </Link>
                   </DropdownItem>
                   <DropdownItem>
-                    <Link className="link"  to="/category/Cookies">Cookies</Link>
+                    <Link className="link" to="/category/Cookies">
+                      Cookies
+                    </Link>
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
             </div>
+            <Button
+              id="basic-button"
+              aria-controls={open ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+              disableRipple
+              style={{ backgroundColor: "transparent" }}
+              variant="text"
+              className="navbar__btn"
+            >
+              Productos
+            </Button>
+            <Menu>
+              id="basic-menu" anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps=
+              {{
+                "aria-labelledby": "basic-button",
+              }}
+              {categories.map((category) => {
+                return (
+                  <MenuItem onClick={handleClose}>
+                    <Link to={`/category/${category}`}>{category}</Link>
+                  </MenuItem>
+                );
+              })}
+            </Menu>
           </Navbar>
         </div>
         <Link to="/Carrito">

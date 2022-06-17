@@ -11,18 +11,26 @@ const CartProvider = ({ children }) => {
       (cartItems) => cartItems.id === product.id
     );
     if (!isInCart) {
+      setTotalPrice(totalPrice + product.price)
       setCartListItems((cartListItems) => [...cartListItems, product]);
     }
     else{
         setCartListItems(product.cantidad +1)
     }
   };
+
+  const deleteProduct = (product) => {
+    // console.log("Producto a eliminar:", product)
+    setCartListItems(cartListItems.filter( (cartProduct) => cartProduct.id !== product.id) )
+}
+
   const data = {
     cartListItems,
     setCartListItems,
     addProductToCart,
     totalPrice, 
     setTotalPrice,
+    deleteProduct
   };
   return <CartContext.Provider value={data}>{children}</CartContext.Provider>;
 };
