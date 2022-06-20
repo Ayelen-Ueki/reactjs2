@@ -1,10 +1,12 @@
 import ItemDetail from "../itemDetail/ItemDetail";
-import items from "../item/Item";
+// import items from "../item/Item";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import {doc, getDoc} from "firebase/firestore";
+import db from "../firebase/firebaseConfig";
 
 const ItemDetailContainer = () => {
-  const [product, setProduct] = useState({});
+  const [products, setProducts] = useState({});
   const { id } = useParams();
 
   // const getItems = () => {
@@ -20,21 +22,38 @@ const ItemDetailContainer = () => {
   //     setProduct(res);
   //   });
   // }, []);
-  useEffect(() => {
-    setProduct(itemsFilter);
-  }, []);
+  // useEffect(() => {
+  //   setProduct(itemsFilter);
+  // }, []);
 
 
-  //usamos find porque filter devuelve un objeto y find un array
-  const itemsFilter = items.find((item) => {
-    //usamos solo 2 igual porque el id en items está como un number y el que nos trae de useParams es un string
-    return item.id.toString() === id;
+  const getProduct = async() => {
+    const docRef = doc(db, "productos", id)
+    const docSnaptshop = await getDoc(docRef)
+    let product = docSnaptshop.data()
+    product.id = docSnaptshop.id
+    return product
+}
+
+
+  useEffect(() => {   
+    getProduct()
+    .then( (prod) => {
+        setProducts(prod)
+    })
+}, [id])
+
+  // usamos find porque filter devuelve un objeto y find un array
+
+  const itemsFilter = products.find((item) => {
+    return item.id == id;
   });
 
+  itemsFilter()
 
   return (
     <div>
-      <ItemDetail data={product}  />
+      <ItemDetail data={products}  />
     </div>
   );
 };

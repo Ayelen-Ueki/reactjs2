@@ -1,25 +1,40 @@
 import React from "react";
 import ItemList from "../itemList/ItemList";
+// import items from "../item/Item";
 import { useState, useEffect } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import db from "../firebase/firebaseConfig";
-import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom";
+import "./ItemListContainer.css"
 
 //Contiene todos los productos de la tienda y la funcionalidad para llamarlos desde nuestra "base de datos" (items)
 //Los muestra a través del Item List, enviando los datos de los productos por props
 const ItemListContainer = () => {
+  // const [products, setProducts] = useState([]);
+  // const getItems = () => {
+  //   return new Promise((resolve, reject) => {
+  //     setTimeout(() => {
+  //       resolve(items);
+  //     }, 2000);
+  //   });
+  // };
+  // useEffect(() => {
+  //   getItems().then((res) => {
+  //     setProducts(res);
+  //   });
+  // }, []);
+
   const [products, setProducts] = useState([]);
-  const { category } = useParams()
+  const { category } = useParams();
 
-  useEffect( () => {
-    setProducts([])
-    console.log()
-    getProducts()
-    .then( (productos) => {
-        category ?  filterFirebase() : setProducts(productos)
-    })
-}, [])
-
+  //   useEffect( () => {
+  //     setProducts([])
+  //     console.log()
+  //     getProducts()
+  //     .then( (productos) => {
+  //         category ?  filterFirebase() : setProducts(productos)
+  //     })
+  // }, [])
   const getProducts = async () => {
     //productSnapshot nos va a traer nuestra lista de productos que cargamos a Firebase dentro de "feelinit"
     const productSnapshot = await getDocs(collection(db, "feelinit"));
@@ -35,6 +50,13 @@ const ItemListContainer = () => {
     return productList;
   };
 
+  useEffect(() => {
+    setProducts([]);
+    getProducts().then((productos) => {
+      category ? filterFirebase() : setProducts(productos);
+    });
+  }, [category]);
+
   const filterFirebase = async () => {
     const productRef = collection(db, "feelinit");
     const queryResult = query(productRef, where("category", "==", category));
@@ -48,8 +70,16 @@ const ItemListContainer = () => {
   };
 
   return (
-    <div className="container">
-      <ItemList data={{ products }} />
+    <div className="items">
+      {products.map(({ title, price, image, id, stock }) => (
+        <ItemList
+          title={title}
+          price={price}
+          image={image}
+          stock={stock}
+          id={id}
+        />
+      ))}
     </div>
   );
 };

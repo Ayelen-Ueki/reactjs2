@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import ItemCount from "../itemCount/ItemCount";
 
 //Son las cartas en las que se van a mostrar los productos
-const ItemCards = ({title, price, image, description, stock, category}) => {
+const ItemCards = ({title, price, image, description, stock, id}) => {
     return (
         <div>
           <Card>  
@@ -23,7 +23,7 @@ const ItemCards = ({title, price, image, description, stock, category}) => {
               </CardSubtitle>
               <CardText>{price}</CardText>
               <Button>
-                <Link style={{textDecoration: 'none', color: "black"}} to={`/product/${category}`}>Ver detalle</Link>
+                <Link style={{textDecoration: 'none', color: "black"}} to={`/product/${id}`}>Ver detalle</Link>
                 </Button>
             </CardBody>
           </Card>

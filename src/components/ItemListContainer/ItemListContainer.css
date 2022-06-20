@@ -1,0 +1,14 @@
+.items{    
+    display: grid;
+    flex-direction: 1fr 1fr 1fr;
+}
+
+.items{    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.item{
+    margin: 10px;
+}

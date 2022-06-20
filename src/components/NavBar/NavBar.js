@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -12,23 +12,12 @@ import "./NavBar.css";
 import Logo from "../images/Logo.png";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 
-const NavBar = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const open = Boolean(anchorEl);
-  const categories = ["alfajores", "cookies", "tortas"]
+const NavBar = ({order}) => {
   return (
     <div>
       <Navbar expand="md" className="navbar">
-        <NavbarBrand href="/">
+        <NavbarBrand>
           {/* Los Links nos van a permitir que al clickar sobre el objeto al que envuelven podamos viajar a las distintas páginas de nuestro sitio según lo indiquemos en el "to". Estas páginas van a estar definidas en donde llamamos a nuestras Routes */}
           <Link to="/">
             <img src={Logo} alt="logo" className="logo" />
@@ -80,35 +69,6 @@ const NavBar = () => {
                 </DropdownMenu>
               </Dropdown>
             </div>
-            <Button
-              id="basic-button"
-              aria-controls={open ? "basic-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-              onClick={handleClick}
-              disableRipple
-              style={{ backgroundColor: "transparent" }}
-              variant="text"
-              className="navbar__btn"
-            >
-              Productos
-            </Button>
-            <Menu>
-              id="basic-menu" anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              MenuListProps=
-              {{
-                "aria-labelledby": "basic-button",
-              }}
-              {categories.map((category) => {
-                return (
-                  <MenuItem onClick={handleClose}>
-                    <Link to={`/category/${category}`}>{category}</Link>
-                  </MenuItem>
-                );
-              })}
-            </Menu>
           </Navbar>
         </div>
         <Link to="/Carrito">
