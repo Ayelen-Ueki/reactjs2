@@ -21,7 +21,7 @@ const ItemCards = ({title, price, image, description, stock, id}) => {
               <CardSubtitle className="mb-2 text-muted" tag="h6">
                 {description}
               </CardSubtitle>
-              <CardText>{price}</CardText>
+              <CardText>${price}</CardText>
               <Button>
                 <Link style={{textDecoration: 'none', color: "black"}} to={`/product/${id}`}>Ver detalle</Link>
                 </Button>

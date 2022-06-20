@@ -1,19 +1,22 @@
 import React from "react";
-import {
-  Navbar,
-  NavbarBrand,
-  DropdownMenu,
-  DropdownItem,
-  Dropdown,
-  DropdownToggle,
-  Button,
-} from "reactstrap";
+import { Navbar, NavbarBrand} from "reactstrap";
 import "./NavBar.css";
 import Logo from "../images/Logo.png";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import List from "@mui/material/List";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import Collapse from "@mui/material/Collapse";
 
-const NavBar = ({order}) => {
+const NavBar = () => {
+  const [open, setOpen] = React.useState(true);
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
   return (
     <div>
       <Navbar expand="md" className="navbar">
@@ -26,54 +29,40 @@ const NavBar = ({order}) => {
         </NavbarBrand>
         <div>
           <Navbar color="faded">
-            <Button>
-              <Link className="link" to="/">
-                Inicio
-              </Link>
-            </Button>
-            <Button>
-              <Link className="link" to="/Nosotros">
-                Nosotros
-              </Link>
-            </Button>
-            <Button>
-              <Link className="link" to="/Recetas">
-                Recetas
-              </Link>
-            </Button>
-            <Button>
-              <Link className="link" to="/Contacto">
-                Contacto
-              </Link>
-            </Button>
-
-            <div className="d-flex justify-content-center p-5">
-              <Dropdown toggle={function noRefCheck() {}}>
-                <DropdownToggle caret>Categorías</DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem>
-                    <Link className="link" to="/category/Alfajores">
-                      Alfajores
-                    </Link>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <Link className="link" to="/category/Tortas">
-                      Tortas
-                    </Link>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <Link className="link" to="/category/Cookies">
-                      Cookies
-                    </Link>
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </div>
+            <Link className="link" to="/">
+              Inicio
+            </Link>
+            <Link className="link" to="/Nosotros">
+              Nosotros
+            </Link>
+            <Link className="link" to="/Recetas">
+              Recetas
+            </Link>
+            <Link className="link" to="/Contacto">
+              Contacto
+            </Link>
+            <Link className="carrito" to="/Carrito">
+              <CartWidget />
+            </Link>
+            <ListItemButton onClick={handleClick}>
+              <ListItemText primary="Categorías" />
+              {open ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <Link to="/Alfajores" className="categories"><ListItemButton sx={{ pl: 4 }}>
+                  <ListItemText >Alfajores</ListItemText>
+                </ListItemButton></Link>
+                <Link to="/Cookies" className="categories"><ListItemButton sx={{ pl: 4 }}>
+                  <ListItemText>Cookies</ListItemText>
+                </ListItemButton></Link>
+                <Link to="/Tortas" className="categories"><ListItemButton sx={{ pl: 4 }}>
+                  <ListItemText>Tortas</ListItemText>
+                </ListItemButton></Link>
+              </List>
+            </Collapse>
           </Navbar>
         </div>
-        <Link to="/Carrito">
-          <CartWidget />
-        </Link>
       </Navbar>
     </div>
   );

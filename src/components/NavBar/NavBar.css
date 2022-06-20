@@ -5,7 +5,6 @@ li{
 .navbar{
     display: flex;
     flex-direction: column;
-    position: sticky;
     background-color:yellowgreen ;
     padding: 5px;
 }
@@ -15,12 +14,19 @@ li{
     width: 5%;
 }
 
-.cart{
-    width: 2%;
-    padding: 5px;
+.carrito{
+    justify-content: flex-end;
+    margin-right: 25px;
+    display: flex;
 }
 
 .link{
+    text-decoration: none;
+    color: black;
+    margin: 15px;
+}
+
+.categories{
     text-decoration: none;
     color: black;
 }
