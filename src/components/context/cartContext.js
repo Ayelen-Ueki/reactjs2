@@ -7,17 +7,17 @@ const CartProvider = ({ children}) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [orderLength, setOrderLength ] = useState(0);
 
-  const addProductToCart = (product,) => {
+  const addProductToCart = (product) => {
     let isInCart = cartListItems.find(
       (cartItems) => cartItems.id === product.id
     );
     if (!isInCart) {
-      setTotalPrice(totalPrice + product.price*product.cantidad)
+      setTotalPrice(totalPrice + product.price*product.order)
       setCartListItems((cartListItems) => [...cartListItems, product]);
       setOrderLength(cartListItems.length)
     }
     else{
-        setCartListItems(product.cantidad +1)
+        setCartListItems(product.order +1)
     }
   };
 
