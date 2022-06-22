@@ -1,19 +1,33 @@
 import React, { useState } from "react";
 import { Form, Input, FormGroup, Label, Button } from "reactstrap";
 import { collection, addDoc } from "firebase/firestore";
-import db  from "../firebase/firebaseConfig";
+import db from "../firebase/firebaseConfig";
 import MessageSuccess from "../MessageSuccess/MessageSuccess";
-import "./Contacto.css"
+import "./Contacto.css";
 
-const initialState = {
-  name: "",
-  email: "",
-  address: "",
-};
+const Contacto = ({ data }) => {
+  const initialState = {
+    name: "",
+    email: "",
+    phone: "",
+  };
 
-const Contacto = () => {
+  const orderState = {
+    buyer: {},
+    items: data.map((item) => {
+      return {
+        id: item.id,
+        title: item.title,
+        price: item.price,
+      };
+    }),
+    total: data.order * data.price,
+  };
+
   const [contacto, setContacto] = useState(initialState);
   const [contactoID, setContactoId] = useState("");
+
+  const [orders, setOrder] = useState(orderState);
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -27,7 +41,16 @@ const Contacto = () => {
     });
     setContactoId(docRef.id);
     setContacto(initialState);
+    setOrder({ ...orders, buyer: contacto });
+    pushToFirebase(orders)
   };
+
+const pushToFirebase = async (newOrders) => {
+  const ordersFirebase = collection(db, 'orders')
+  const ordersDoc = await  addDoc(ordersFirebase, newOrders)
+  console.log(ordersDoc);
+}
+ 
   return (
     <Form onSubmit={onSubmit} className="Form">
       <FormGroup className="mb-2 me-sm-2 mb-sm-0">
@@ -57,15 +80,15 @@ const Contacto = () => {
         />
       </FormGroup>
       <FormGroup className="mb-2 me-sm-2 mb-sm-0">
-        <Label className="me-sm-2" for="exampleAddress">
-          Address
+        <Label className="me-sm-2" for="examplePhone">
+          Celular
         </Label>
         <Input
-          id="exampleAddress"
+          id="examplePhone"
           name="address"
-          placeholder="De dónde sos?"
-          type="address"
-          value={contacto.address}
+          placeholder="Cuál es tu número telefónico?"
+          type="phone"
+          value={contacto.phone}
           onChange={onChange}
         />
       </FormGroup>

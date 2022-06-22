@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -11,11 +11,30 @@ import {
 } from "reactstrap";
 import ItemCount from "../itemCount/ItemCount";
 import { CartContext } from "../context/cartContext";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Contacto from "../pages/Contacto";
 
-const ItemCardDetail = ({ title, price, image, description, stock, id }) => {
+const ItemCardDetail = ({ data, itemsFilter }) => {
+  const {title, price, image, description, stock, id} = data; 
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
   const [order, setOrder] = useState(0);
   const [showButton, setShowButton] = useState(false);
   const { addProductToCart } = useContext(CartContext);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <div>
       <Card>
@@ -37,21 +56,35 @@ const ItemCardDetail = ({ title, price, image, description, stock, id }) => {
           setShowButton={setShowButton}
         />
       ) : (
-        <Button
-          onClick={() =>
-            addProductToCart([
-              title,
-              price,
-              image,
-              description,
-              stock,
-              id,
-              order,
-            ])
-          }
-        >
-          <Link to="/Carrito">Finalizar Compra</Link>
-        </Button>
+        <div>
+          <Button
+            onClick={() =>
+              addProductToCart([
+                title,
+                price,
+                image,
+                description,
+                stock,
+                id,
+                order,
+              ])
+            }
+          >
+            <Link to="/Carrito" onClick={handleOpen}>
+              Finalizar Compra
+            </Link>
+          </Button>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Contacto data = {data}/>
+            </Box>
+          </Modal>
+        </div>
       )}
     </div>
   );
