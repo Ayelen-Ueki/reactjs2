@@ -59,6 +59,7 @@ const ItemListContainer = () => {
 
   const filterFirebase = async () => {
     const productRef = collection(db, "feelinit");
+    // El primer category viene de firebase y el segundo del useParams
     const queryResult = query(productRef, where("category", "==", category));
     const querySnapshot = await getDocs(queryResult);
     const productList = querySnapshot.docs.map((doc) => {

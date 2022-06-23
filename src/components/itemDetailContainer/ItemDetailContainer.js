@@ -26,6 +26,12 @@ const ItemDetailContainer = () => {
   //   setProduct(itemsFilter);
   // }, []);
 
+  useEffect(() => {   
+    getProduct()
+    .then( (prod) => {
+        setProducts(prod)
+    })
+}, [id])
 
   const getProduct = async() => {
     const docRef = doc(db, "productos", id)
@@ -34,14 +40,6 @@ const ItemDetailContainer = () => {
     product.id = docSnaptshop.id
     return product
 }
-
-
-  useEffect(() => {   
-    getProduct()
-    .then( (prod) => {
-        setProducts(prod)
-    })
-}, [id])
 
   // usamos find porque filter devuelve un objeto y find un array
 
