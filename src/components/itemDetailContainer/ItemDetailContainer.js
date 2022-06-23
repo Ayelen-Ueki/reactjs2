@@ -43,8 +43,8 @@ const ItemDetailContainer = () => {
 
   // usamos find porque filter devuelve un objeto y find un array
 
-  const itemsFilter = products.find((item) => {
-    return item.id === item.doc.id;
+  const itemsFilter = products.find((product) => {
+    return product.id === product.doc.id;
   });
 
   itemsFilter()
