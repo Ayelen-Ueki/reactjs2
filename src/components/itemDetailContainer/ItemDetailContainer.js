@@ -43,14 +43,24 @@ const ItemDetailContainer = () => {
 
   // usamos find porque filter devuelve un objeto y find un array
 
-  const itemsFilter = products.find((product) => {
-    return products.id === product.doc.id;
-  });
+  // const itemsFilter = products.find((product) => {
+  //   return products.id === product.doc.id;
+  // });
 
 
   return (
     <div>
-      <ItemDetail data={products}/>
+        {products.map(({ title, price, image, id, stock, category, description }) => (
+        <ItemDetail
+          title={title}
+          price={price}
+          image={image}
+          stock={stock}
+          id={id}
+          category={category}
+          description={description}
+        />
+      ))}
     </div>
   );
 };

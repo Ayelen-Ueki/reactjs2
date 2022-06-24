@@ -5,7 +5,12 @@ import db from "../firebase/firebaseConfig";
 import MessageSuccess from "../MessageSuccess/MessageSuccess";
 import "./Contacto.css";
 
-const Contacto = ({ data }) => {
+const Contacto = ({  title,
+  price,
+  id,
+  order
+}) => {
+
   const initialState = {
     name: "",
     email: "",
@@ -14,14 +19,13 @@ const Contacto = ({ data }) => {
 
   const orderState = {
     buyer: {},
-    items: data.map((item) => {
-      return {
-        id: item.id,
-        title: item.title,
-        price: item.price,
-      };
-    }),
-    total: data.order * data.price,
+
+
+        id: id,
+        title: title,
+        price: price,
+
+    total: order * price,
   };
 
   const [contacto, setContacto] = useState(initialState);
