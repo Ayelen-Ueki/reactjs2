@@ -15,7 +15,7 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Contacto from "../pages/Contacto";
 
-const ItemCardDetail = ({ data, itemsFilter }) => {
+const ItemCardDetail = ({ data }) => {
   const {title, price, image, description, stock, id} = data; 
 
   const style = {

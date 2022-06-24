@@ -1,11 +1,11 @@
 import ItemCardDetail from "../itemCardDetail/ItemCardDetail";
 import "./ItemDetail.css";
 
-const ItemDetail = ({data, itemsFilter}) =>
+const ItemDetail = ({data}) =>
     {
       return(
         <div className="item">
-            <ItemCardDetail data={data} itemsFilter={itemsFilter} />
+            <ItemCardDetail data={data} />
         </div>
       )
     }

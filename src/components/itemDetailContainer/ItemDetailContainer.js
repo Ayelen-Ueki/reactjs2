@@ -34,7 +34,7 @@ const ItemDetailContainer = () => {
 }, [id])
 
   const getProduct = async() => {
-    const docRef = doc(db, "productos", id)
+    const docRef = doc(db, "feelinit", id)
     const docSnaptshop = await getDoc(docRef)
     let product = docSnaptshop.data()
     product.id = docSnaptshop.id
@@ -44,14 +44,13 @@ const ItemDetailContainer = () => {
   // usamos find porque filter devuelve un objeto y find un array
 
   const itemsFilter = products.find((product) => {
-    return product.id === product.doc.id;
+    return products.id === product.doc.id;
   });
 
-  itemsFilter()
 
   return (
     <div>
-      <ItemDetail data={products}  />
+      <ItemDetail data={products}/>
     </div>
   );
 };
