@@ -3,10 +3,11 @@ import ItemDetail from "../itemDetail/ItemDetail";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {doc, getDoc} from "firebase/firestore";
+// import { collection, getDocs, query, where } from "firebase/firestore";
 import db from "../firebase/firebaseConfig";
 
 const ItemDetailContainer = () => {
-  const [products, setProducts] = useState({});
+  const [products, setProducts] = useState([]);
   const { id } = useParams();
 
   // const getItems = () => {
@@ -26,41 +27,71 @@ const ItemDetailContainer = () => {
   //   setProduct(itemsFilter);
   // }, []);
 
-  useEffect(() => {   
-    getProduct()
-    .then( (prod) => {
-        setProducts(prod)
-    })
-}, [id])
+    useEffect(() => {
+      getProduct()
+      .then( (product) => {
+        setProducts(product)
+      })
+  }, [id])
 
-  const getProduct = async() => {
-    const docRef = doc(db, "feelinit", id)
-    const docSnap = await getDoc(docRef)
-    let product = docSnap.data()
-    product.id = docSnap.id
-    return product
-}
+    const getProduct = async() => {
+      const docRef = doc(db, "feelinit", id)
+      const docSnap = await getDoc(docRef)
+      let product = docSnap.data()
+      product.id=docSnap.id
+      return product
+  }
 
-  // usamos find porque filter devuelve un objeto y find un array
+  // const getProducts = async () => {
+  //   const productSnap = await getDocs(collection(db, "feelinit"));
+  //   const productList = productSnap.docs.map((doc) => {
+  //     let product = doc.data();
+  //     product.id = doc.id;
+  //     return product;
+  //   });
+  //   return productList;
+  // };
 
-  // const itemsFilter = products.find((product) => {
-  //   return products.id === product.doc.id;
-  // });
+  // useEffect(() => {
+  //   setProducts([]);
+  //   getProducts().then((productos) => {
+  //     id ? filterFirebase() : setProducts(productos);
+  //   });
+  // }, [id]);
+  // // usamos find porque filter devuelve un objeto y find un array
 
+  // const filterFirebase = async () => {
+  //   const productRef = collection(db, "feelinit");
+  //   // El primer category viene de firebase y el segundo del useParams
+  //   const queryResult = query(productRef, where("id", "==", id));
+  //   const querySnapshot = await getDocs(queryResult);
+  //   const productList = querySnapshot.docs.map((doc) => {
+  //     let product = doc.data();
+  //     product.id = doc.id;
+  //     return product;
+  //   });
+  //   return setProducts(productList);
+  // };
 
   return (
     <div>
-        {products.map(({ title, price, image, id, stock, category, description }) => (
-        <ItemDetail
-          title={title}
-          price={price}
-          image={image}
-          stock={stock}
-          id={id}
-          category={category}
-          description={description}
-        />
-      ))}
+      {id && (
+        <div>
+          {products.map(
+            ({ title, price, image, id, stock, category, description }) => (
+              <ItemDetail
+                title={title}
+                price={price}
+                image={image}
+                stock={stock}
+                id={id}
+                category={category}
+                description={description}
+              />
+            )
+          )}
+        </div>
+      )}
     </div>
   );
 };

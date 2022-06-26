@@ -1,4 +1,4 @@
-
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -10,18 +10,23 @@ import {
   Button,
 } from "reactstrap";
 import ItemCount from "../itemCount/ItemCount";
-
+import { CartContext } from "../context/cartContext";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Contacto from "../pages/Contacto";
 
-const ItemCardDetail = ({ title,
+const ItemCardDetail = ({
+  title,
   price,
   image,
   stock,
   id,
-  description, setOrder, order, setShowButton, open, handleOpen, handleClose, addProductToCart, showButton, style }) => {
-    return(
+  description,
+  style,
+}) => {
+  const { handleOpen, handleClose, showButton, addProductToCart, open } =
+    useContext(CartContext);
+  return (
     <div>
       <Card>
         <CardImg alt="Card image cap" img src={image} width="100%" />
@@ -33,27 +38,14 @@ const ItemCardDetail = ({ title,
           <CardText>${price}</CardText>
         </CardBody>
       </Card>
-      {/* Condicional ternario. El signo de admiraci{on al principio niega lo que le sigue} */}
+      {/* Condicional ternario. El signo de admiración al principio niega lo que le sigue} */}
       {!showButton ? (
-        <ItemCount
-          stock={stock}
-          setOrder={setOrder}
-          order={order}
-          setShowButton={setShowButton}
-        />
+        <ItemCount />
       ) : (
         <div>
           <Button
             onClick={() =>
-              addProductToCart([
-                title,
-                price,
-                image,
-                description,
-                stock,
-                id,
-                order,
-              ])
+              addProductToCart([title, price, image, description, stock, id])
             }
           >
             <Link to="/Carrito" onClick={handleOpen}>
@@ -67,12 +59,14 @@ const ItemCardDetail = ({ title,
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
-              <Contacto title={title}
-          price={price}
-          image={image}
-          stock={stock}
-          id={id}
-          description={description} />
+              <Contacto
+                title={title}
+                price={price}
+                image={image}
+                stock={stock}
+                id={id}
+                description={description}
+              />
             </Box>
           </Modal>
         </div>

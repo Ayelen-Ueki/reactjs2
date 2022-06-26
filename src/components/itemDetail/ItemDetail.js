@@ -1,7 +1,5 @@
 import ItemCardDetail from "../itemCardDetail/ItemCardDetail";
 import "./ItemDetail.css";
-import React, { useState, useContext } from "react";
-import { CartContext } from "../context/cartContext";
 
 const ItemDetail = ({ title,
   price,
@@ -22,12 +20,6 @@ const ItemDetail = ({ title,
         boxShadow: 24,
         p: 4,
       };
-      const [order, setOrder] = useState(0);
-      const [showButton, setShowButton] = useState(false);
-      const { addProductToCart } = useContext(CartContext);
-      const [open, setOpen] = React.useState(false);
-      const handleOpen = () => setOpen(true);
-      const handleClose = () => setOpen(false);
       return (
 
         <div className="item">
@@ -38,14 +30,6 @@ const ItemDetail = ({ title,
           id={id}
           category={category}
           description={description}
-          setOrder={setOrder}
-          order={order}
-          setShowButton={setShowButton}
-          showButton = {showButton}
-          addProductToCart = {addProductToCart}
-          handleOpen={handleOpen}
-          handleClose={handleClose}
-          open={open}
           style={style}
           />
           
