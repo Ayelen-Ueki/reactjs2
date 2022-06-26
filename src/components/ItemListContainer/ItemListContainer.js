@@ -36,14 +36,16 @@ const ItemListContainer = () => {
   //     })
   // }, [])
   const getProducts = async () => {
-    //productSnapshot nos va a traer nuestra lista de productos que cargamos a Firebase dentro de "feelinit"
-    const productSnapshot = await getDocs(collection(db, "feelinit"));
-    //Recorremos el Sanpshot para obtener cada uno de nuestro productos : los docs son cada uno de los productos que tenemos en nuestra collection
-    const productList = productSnapshot.docs.map((doc) => {
+//Traemos con GetDocs todos los documentos de nuestra collection
+    const productSnap= await getDocs(collection(db, "feelinit"));
+    // Recorremos con un map todos los documentos de nuestra collection y los guardamos en una nueva constante
+    const productList = productSnap.docs.map((doc) => {
       //Guardamos la data del doc en una variable
       let product = doc.data();
-      //Para afectar un objeto y agregarle una propiedad nueva
+      console.log(product)
+      //Para afectar un objeto y agregarle una propiedad nueva. Ahora los productos van a tener elo id de los documentos
       product.id = doc.id;
+      console.log(product.id)
       return product;
     });
     //Devolvemos productList para poder utilizarlo en otra función
@@ -71,20 +73,38 @@ const ItemListContainer = () => {
   };
 
   return (
-    <div className="items">
-      {products.map(({ title, price, image, id, stock }) => {
-        return (
-          <ItemList
-            title={title}
-            price={price}
-            image={image}
-            stock={stock}
-            id={id}
-          />
-        );
-      })}
-    </div>
-  );
+<div>
+      {!category ? (
+        <div className="items">
+          {products.map(({ title, price, image, id, stock }) => {
+            return (
+                <ItemList
+                  title={title}
+                  price={price}
+                  image={image}
+                  stock={stock}
+                  id={id}
+                />
+            );
+          })}
+          </div>
+      ) : (
+        <div  className="items">
+          {products.map(({ title, price, image, id, stock }) => {
+            return (
+                <ItemList
+                  title={title}
+                  price={price}
+                  image={image}
+                  stock={stock}
+                  id={id}
+                />
+            );
+          })}
+        </div>
+      )}
+</div>
+  )
 };
 
 export default ItemListContainer;

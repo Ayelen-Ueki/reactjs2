@@ -50,13 +50,13 @@ const NavBar = () => {
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
-                <Link to="/Alfajores" className="categories"><ListItemButton sx={{ pl: 4 }}>
+                <Link to="/category/Alfajores" className="categories"><ListItemButton sx={{ pl: 4 }}>
                   <ListItemText >Alfajores</ListItemText>
                 </ListItemButton></Link>
-                <Link to="/Cookies" className="categories"><ListItemButton sx={{ pl: 4 }}>
+                <Link to="/category/Cookies" className="categories"><ListItemButton sx={{ pl: 4 }}>
                   <ListItemText>Cookies</ListItemText>
                 </ListItemButton></Link>
-                <Link to="/Tortas" className="categories"><ListItemButton sx={{ pl: 4 }}>
+                <Link to="/category/Tortas" className="categories"><ListItemButton sx={{ pl: 4 }}>
                   <ListItemText>Tortas</ListItemText>
                 </ListItemButton></Link>
               </List>
