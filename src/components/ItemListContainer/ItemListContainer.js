@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import db from "../firebase/firebaseConfig";
 import { useParams } from "react-router-dom";
-import "./ItemListContainer.css"
+import "./ItemListContainer.css";
 
 //Contiene todos los productos de la tienda y la funcionalidad para llamarlos desde nuestra "base de datos" (items)
 //Los muestra a través del Item List, enviando los datos de los productos por props
@@ -72,15 +72,17 @@ const ItemListContainer = () => {
 
   return (
     <div className="items">
-      {products.map(({ title, price, image, id, stock }) => (
-        <ItemList
-          title={title}
-          price={price}
-          image={image}
-          stock={stock}
-          id={id}
-        />
-      ))}
+      {products.map(({ title, price, image, id, stock }) => {
+        return (
+          <ItemList
+            title={title}
+            price={price}
+            image={image}
+            stock={stock}
+            id={id}
+          />
+        );
+      })}
     </div>
   );
 };

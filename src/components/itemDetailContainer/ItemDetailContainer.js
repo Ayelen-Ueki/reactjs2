@@ -35,9 +35,9 @@ const ItemDetailContainer = () => {
 
   const getProduct = async() => {
     const docRef = doc(db, "feelinit", id)
-    const docSnaptshop = await getDoc(docRef)
-    let product = docSnaptshop.data()
-    product.id = docSnaptshop.id
+    const docSnap = await getDoc(docRef)
+    let product = docSnap.data()
+    product.id = docSnap.id
     return product
 }
 
