@@ -1,9 +1,10 @@
 import ItemCards from "../itemCards/ItemCards";
 import { useContext } from "react";
+import { CartContext } from "../context/cartContext";
 // import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const { cartListItems } = useContext();
+  const { cartListItems } = useContext(CartContext);
   // {
   //   cartListItems.length === 0 && (
   //     <>

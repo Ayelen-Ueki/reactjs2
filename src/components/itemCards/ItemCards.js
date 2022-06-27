@@ -8,10 +8,9 @@ import {
   Button
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import ItemCount from "../itemCount/ItemCount";
 
 //Son las cartas en las que se van a mostrar los productos
-const ItemCards = ({title, price, image, description, stock, id}) => {
+const ItemCards = ({title, price, image, description, id}) => {
     return (
         <div>
           <Card>  
@@ -27,7 +26,6 @@ const ItemCards = ({title, price, image, description, stock, id}) => {
                 </Button>
             </CardBody>
           </Card>
-          <ItemCount stock={stock}/>
         </div>      
       );
 }

@@ -6,7 +6,7 @@ import { CartContext } from "../context/cartContext";
 
 const ItemCount = ({ stock }) => {
   
-  const { order, setOrder, setShowButton  } = useContext(CartContext);
+  const { order, setOrder, setShowButton } = useContext(CartContext);
   const addCount = () => {
     if (order < stock) {
       setOrder(order + 1);

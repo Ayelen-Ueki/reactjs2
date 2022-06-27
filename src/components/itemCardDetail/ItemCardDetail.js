@@ -40,7 +40,7 @@ const ItemCardDetail = ({
       </Card>
       {/* Condicional ternario. El signo de admiración al principio niega lo que le sigue} */}
       {!showButton ? (
-        <ItemCount />
+        <ItemCount stock={stock}/>
       ) : (
         <div>
           <Button

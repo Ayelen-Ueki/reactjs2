@@ -77,19 +77,15 @@ const ItemDetailContainer = () => {
     <div>
       {id && (
         <div>
-          {products.map(
-            ({ title, price, image, id, stock, category, description }) => (
               <ItemDetail
-                title={title}
-                price={price}
-                image={image}
-                stock={stock}
-                id={id}
-                category={category}
-                description={description}
+                title={products.title}
+                price={products.price}
+                image={products.image}
+                stock={products.stock}
+                id={products.id}
+                category={products.category}
+                description={products.description}
               />
-            )
-          )}
         </div>
       )}
     </div>
