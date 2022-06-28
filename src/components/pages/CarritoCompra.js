@@ -58,7 +58,7 @@ const CartOrder = () => {
 
   return (
     <Container className='container-general'> 
-    <Form onSubmit={onSubmit} className="Form">
+    <Form className="Form">
       <FormGroup className="mb-2 me-sm-2 mb-sm-0">
         <Label className="me-sm-2" for="exampleName">
           Name
@@ -98,7 +98,9 @@ const CartOrder = () => {
           onChange={onChange}
         />
       </FormGroup>
-      <Button >Submit</Button>
+      <Link to="/cart">
+      <Button onSubmit={onSubmit} >Submit</Button>
+      </Link>
     </Form>
     <Modal title={success ? 'Compra exitosa' : 'Formulario de contacto'} open={showModal} handleClose={() => setShowModal(false)}>
     {success ? (
@@ -133,9 +135,7 @@ const CartOrder = () => {
                 variant="outlined" 
                 onChange={onChange}
             />
-            <Link to="/cart">
             <button type="submit">Enviar</button>
-            </Link>
             
         </form>
     )}
