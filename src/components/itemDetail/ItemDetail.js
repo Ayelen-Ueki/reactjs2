@@ -7,7 +7,8 @@ const ItemDetail = ({ title,
   stock,
   id,
   category, 
-  description}) =>
+  description,
+  products}) =>
     {
       const style = {
         position: "absolute",
@@ -31,6 +32,7 @@ const ItemDetail = ({ title,
           category={category}
           description={description}
           style={style}
+          products={products}
           />
           
         </div>

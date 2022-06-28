@@ -42,10 +42,8 @@ const ItemListContainer = () => {
     const productList = productSnap.docs.map((doc) => {
       //Guardamos la data del doc en una variable
       let product = doc.data();
-      console.log(product)
       //Para afectar un objeto y agregarle una propiedad nueva. Ahora los productos van a tener elo id de los documentos
       product.id = doc.id;
-      console.log(product.id)
       return product;
     });
     //Devolvemos productList para poder utilizarlo en otra función

@@ -21,15 +21,22 @@ const CartProvider = ({ children}) => {
       setTotalPrice(totalPrice + products.price*order)
       setCartListItems((cartListItems) => [...cartListItems, products]);
       setOrderLength(cartListItems.length)
+      console.log(products.price)
+      console.log(cartListItems)
     }
     else{
-        setCartListItems(order +1)
+      if (order < products.stock) {
+        setOrder(order + 1);
+      }
+      else{
+        alert("Ya no queda más stock del producto seleccionado")
+      }
     }
   };
 
-  const Sale = () => {
+  const Sale = (products) => {
     setShowButton(true)
-    addProductToCart()
+    addProductToCart(products)
   }
 
   const deleteProduct = (product) => {

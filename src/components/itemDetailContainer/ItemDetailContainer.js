@@ -85,6 +85,7 @@ const ItemDetailContainer = () => {
                 id={products.id}
                 category={products.category}
                 description={products.description}
+                products={products}
               />
         </div>
       )}

@@ -2,9 +2,10 @@ import ItemCards from "../itemCards/ItemCards";
 import { useContext } from "react";
 import { CartContext } from "../context/cartContext";
 // import { Link } from "react-router-dom";
+import {Button} from "reactstrap";
 
 const Cart = () => {
-  const { cartListItems } = useContext(CartContext);
+  const { cartListItems, deleteProduct } = useContext(CartContext);
   // {
   //   cartListItems.length === 0 && (
   //     <>
@@ -25,6 +26,7 @@ const Cart = () => {
             stock={stock}
             id={id}
           />
+          <Button onClick={deleteProduct}>Borrar</Button>
         </div>
         );
     }
