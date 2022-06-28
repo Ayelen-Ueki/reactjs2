@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import {doc, getDoc} from "firebase/firestore";
 // import { collection, getDocs, query, where } from "firebase/firestore";
 import db from "../firebase/firebaseConfig";
+import "./ItemDetailContainer.css"; 
 
 const ItemDetailContainer = () => {
   const [products, setProducts] = useState([]);
@@ -76,7 +77,7 @@ const ItemDetailContainer = () => {
   return (
     <div>
       {id && (
-        <div>
+        <div className="itemDetail">
               <ItemDetail
                 title={products.title}
                 price={products.price}

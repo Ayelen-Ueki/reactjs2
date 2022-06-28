@@ -41,7 +41,7 @@ const NavBar = () => {
             <Link className="link" to="/Contacto">
               Contacto
             </Link>
-            <Link className="carrito" to="/Carrito">
+            <Link className="carrito" to="/">
               <CartWidget />
             </Link>
             <ListItemButton onClick={handleClick}>

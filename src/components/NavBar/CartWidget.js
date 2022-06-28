@@ -6,6 +6,7 @@ import { CartContext } from "../context/cartContext";
 import { Link } from "react-router-dom";
 import Menu from "@mui/material/Menu";
 import DeleteIcon from "@mui/icons-material/Delete";
+import "./Cartwidget.css";
 
 const CartWidget = () => {
   const { orderLength, cartListItems, deleteProduct } = useContext(CartContext);
@@ -41,12 +42,10 @@ const CartWidget = () => {
             )}
             {cartListItems.map((item) => {
               return (
-                <div key={item.id}>
-                  <div>
+                <div key={item.id} className="cartitems">
                     {/* <img src={`/${item.image}`} alt="prod carrito" />
                      */}
-                    <img src={item.image} alt="prod carrito" />
-                  </div>
+                    <img src={item.image} alt="prod carrito"   className="image"/>
                   <div>
                     <p>{item.title}</p>
                     <span>$ {item.price}</span>
@@ -61,7 +60,7 @@ const CartWidget = () => {
             })}
             <div>
               <Link to="/CarritoCompras">
-                <button style={{ cursor: "pointer" }} onClick={handleClose}>
+                <button style={{ cursor: "pointer" }} onClick={handleClose} className="finish">
                   Terminar compra
                 </button>
               </Link>

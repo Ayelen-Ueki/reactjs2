@@ -1,0 +1,9 @@
+.cartitems{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.image{
+    display: inline;
+    width: 70%;
+}
