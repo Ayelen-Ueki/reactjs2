@@ -19,16 +19,8 @@ const CartProvider = ({ children}) => {
     );
     if (!isInCart) {
       setTotalPrice(totalPrice + products.price*order)
-      setCartListItems((cartListItems) => [...cartListItems, products]);
+      setCartListItems(() => [products]);
       setOrderLength(cartListItems.length)
-    }
-    else{
-      if (order < products.stock) {
-        setOrder(order + order);
-      }
-      else{
-        alert("Ya no queda más stock del producto seleccionado")
-      }
     }
   };
 
