@@ -1,42 +1,19 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Form, Input, FormGroup, Label, Button } from "reactstrap";
 import { collection, addDoc } from "firebase/firestore";
 import db from "../firebase/firebaseConfig";
 import MessageSuccess from "../MessageSuccess/MessageSuccess";
-import "./Contacto.css";
-import { CartContext } from "../context/cartContext";
-import { useNavigate } from "react-router-dom"
+import "./Contacto.css"
+
+const initialState = {
+  name: "",
+  email: "",
+  address: "",
+};
 
 const Contacto = () => {
-  const { totalPrice, cartListItems, cleanCartProducts } =
-    useContext(CartContext);
-
-  const initialState = {
-    name: "",
-    email: "",
-    phone: "",
-  };
-
-  const orderState = {
-    buyer: {},
-
-    items: cartListItems.map((items) => {
-      return { 
-        id: items.id,
-        title: items.title, 
-        price: items.price };
-    }),
-    total: totalPrice,
-  };
-
   const [contacto, setContacto] = useState(initialState);
   const [contactoID, setContactoId] = useState("");
-  const navigate=useNavigate()
-  const [orders, setOrders] = useState(orderState);
-  
-  const finishOrder = () => {
-    navigate('/')
-}
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -50,18 +27,7 @@ const Contacto = () => {
     });
     setContactoId(docRef.id);
     setContacto(initialState);
-    setOrders({ ...orders, buyer: contacto });
-    pushToFirebase(orders);
   };
-
-  const pushToFirebase = async (newOrders) => {
-    const ordersFirebase = collection(db, "orders");
-    const ordersDoc = await addDoc(ordersFirebase, newOrders);
-    console.log(ordersDoc);
-    cleanCartProducts()
-    finishOrder()
-  };
-
   return (
     <Form onSubmit={onSubmit} className="Form">
       <FormGroup className="mb-2 me-sm-2 mb-sm-0">
@@ -71,7 +37,7 @@ const Contacto = () => {
         <Input
           id="exampleName"
           name="name"
-          placeholder="Por favor, ingrese su nombre"
+          placeholder="Please, enter your name"
           type="name"
           value={contacto.name}
           onChange={onChange}
@@ -84,22 +50,22 @@ const Contacto = () => {
         <Input
           id="exampleEmail"
           name="email"
-          placeholder="algo@mail.com"
+          placeholder="something@idk.cool"
           type="email"
           value={contacto.email}
           onChange={onChange}
         />
       </FormGroup>
       <FormGroup className="mb-2 me-sm-2 mb-sm-0">
-        <Label className="me-sm-2" for="examplePhone">
-          Celular
+        <Label className="me-sm-2" for="exampleAddress">
+          Address
         </Label>
         <Input
-          id="examplePhone"
+          id="exampleAddress"
           name="address"
-          placeholder="Cuál es tu número telefónico?"
-          type="phone"
-          value={contacto.phone}
+          placeholder="Where do you live?"
+          type="address"
+          value={contacto.address}
           onChange={onChange}
         />
       </FormGroup>

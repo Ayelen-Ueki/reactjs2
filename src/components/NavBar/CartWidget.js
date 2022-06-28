@@ -45,7 +45,7 @@ const CartWidget = () => {
                   <div>
                     {/* <img src={`/${item.image}`} alt="prod carrito" />
                      */}
-                     <img src={item.image} alt="prod carrito"/>
+                    <img src={item.image} alt="prod carrito" />
                   </div>
                   <div>
                     <p>{item.title}</p>
