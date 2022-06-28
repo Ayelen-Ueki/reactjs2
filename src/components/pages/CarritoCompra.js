@@ -7,7 +7,8 @@ import { CartContext } from "../context/cartContext";
 import { useNavigate } from "react-router-dom";
 import Modal from '../modal/Modal'
 import TextField from '@mui/material/TextField';
-import { Container } from "@mui/material"
+import { Container } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const CartOrder = () => {
   const { totalPrice, cartListItems, cleanCartProducts } =
@@ -132,7 +133,10 @@ const CartOrder = () => {
                 variant="outlined" 
                 onChange={onChange}
             />
+            <Link to="/cart">
             <button type="submit">Enviar</button>
+            </Link>
+            
         </form>
     )}
     

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardImg,
@@ -54,9 +54,9 @@ const ItemCardDetail = ({
           <Button
             onClick={addProductToCart(products)}
           >
-            {/* <Link to="/Carrito"> */}
+            <Link to="/">
               Finalizar Compra
-            {/* </Link> */}
+            </Link>
           </Button>
           {/* <Modal
             open={open}

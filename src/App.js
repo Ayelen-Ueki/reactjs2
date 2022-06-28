@@ -10,7 +10,7 @@ import Recetas from "./components/pages/Recetas";
 import NotFound from "./components/pages/NotFound";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CartProvider from './components/context/cartContext';
-// import Cart from "./components/pages/Carrito";
+import ItemCart from "./components/itemCart/ItemCart";
 import CartOrder from "./components/pages/CarritoCompra";
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
           <Route path="/Recetas" element={<Recetas/>} />
           <Route path="/product/:id" element={<ItemDetailContainer />} />
           <Route path="/category/:category" element={<ItemListContainer />} />
-          {/* <Route path="/Carrito" element={<Cart/>}/> */}
+          <Route path="/cart" element={<ItemCart/>}/>
           <Route path="/CarritoCompras" element={<CartOrder/>}/>
           <Route path="*" element={<NotFound />} />
         </Routes>

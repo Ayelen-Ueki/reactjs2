@@ -21,8 +21,9 @@ const CartProvider = ({ children}) => {
       setTotalPrice(totalPrice + products.price*order)
       setCartListItems(cartListItems=> [...cartListItems, products]);
       localStorage.setItem('products', JSON.stringify([...cartListItems, products]))
-      setOrderLength(cartListItems.length)
+      
     }
+    setOrderLength(cartListItems.length)
   };
 
   const deleteProduct = (products) => {
