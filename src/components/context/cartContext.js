@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import React from "react";
+import React from "react"
 
 const CartContext = createContext();
 
@@ -13,19 +13,24 @@ const CartProvider = ({ children}) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const addProductToCart = (product) => {
+  const addProductToCart = (products) => {
     let isInCart = cartListItems.find(
-      (cartItems) => cartItems.id === product.id
+      (cartItems) => cartItems.id === products.id
     );
     if (!isInCart) {
-      setTotalPrice(totalPrice + product.price*product.order)
-      setCartListItems((cartListItems) => [...cartListItems, product]);
+      setTotalPrice(totalPrice + products.price*order)
+      setCartListItems((cartListItems) => [...cartListItems, products]);
       setOrderLength(cartListItems.length)
     }
     else{
-        setCartListItems(product.order +1)
+        setCartListItems(order +1)
     }
   };
+
+  const Sale = () => {
+    setShowButton(true)
+    addProductToCart()
+  }
 
   const deleteProduct = (product) => {
     setCartListItems(cartListItems.filter( (cartProduct) => cartProduct.id !== product.id) )
@@ -34,7 +39,6 @@ const CartProvider = ({ children}) => {
   const data = {
     cartListItems,
     setCartListItems,
-    addProductToCart,
     totalPrice, 
     deleteProduct, 
     orderLength,
@@ -44,7 +48,8 @@ const CartProvider = ({ children}) => {
     showButton, 
     handleOpen, 
     handleClose, 
-    setShowButton
+    setShowButton, 
+    Sale
   };
   return <CartContext.Provider value={data}>{children}</CartContext.Provider>;
 };

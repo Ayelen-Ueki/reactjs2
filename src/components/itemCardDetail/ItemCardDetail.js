@@ -24,7 +24,7 @@ const ItemCardDetail = ({
   description,
   style,
 }) => {
-  const { handleOpen, handleClose, showButton, addProductToCart, open } =
+  const { handleOpen, handleClose, showButton, addProductToCart, open, totalPrice, order } =
     useContext(CartContext);
   return (
     <div>
@@ -40,9 +40,12 @@ const ItemCardDetail = ({
       </Card>
       {/* Condicional ternario. El signo de admiración al principio niega lo que le sigue} */}
       {!showButton ? (
-        <ItemCount stock={stock}/>
+        <ItemCount stock={stock} price={price} id={id}/>
       ) : (
         <div>
+          <p>
+            Total: {totalPrice}
+          </p>
           <Button
             onClick={() =>
               addProductToCart([title, price, image, description, stock, id])
