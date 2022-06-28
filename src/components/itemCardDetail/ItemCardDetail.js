@@ -29,7 +29,7 @@ const ItemCardDetail = ({
     handleOpen,
     handleClose,
     showButton,
-    Sale,
+    addProductToCart,
     open,
     totalPrice,
   } = useContext(CartContext);
@@ -52,9 +52,7 @@ const ItemCardDetail = ({
         <div>
           <p>Total: {totalPrice}</p>
           <Button
-            onClick={() =>
-              Sale(products)
-            }
+            onClick={addProductToCart(products)}
           >
             <Link to="/Carrito" onClick={handleOpen}>
               Finalizar Compra

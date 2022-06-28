@@ -5,7 +5,7 @@ import { CartContext } from "../context/cartContext";
 import {Button} from "reactstrap";
 
 const Cart = () => {
-  const { cartListItems, deleteProduct } = useContext(CartContext);
+  const { cartListItems, deleteProduct, totalPrice } = useContext(CartContext);
   // {
   //   cartListItems.length === 0 && (
   //     <>
@@ -26,6 +26,7 @@ const Cart = () => {
             stock={stock}
             id={id}
           />
+          <p>Total $:{totalPrice}</p>
           <Button onClick={deleteProduct}>Borrar</Button>
         </div>
         );

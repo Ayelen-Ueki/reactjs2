@@ -6,7 +6,7 @@ import { CartContext } from "../context/cartContext";
 
 const ItemCount = ({ stock}) => {
   
-  const { order, setOrder, Sale } = useContext(CartContext);
+  const { order, setOrder, setShowButton } = useContext(CartContext);
 
   const addCount = () => {
     if (order < stock) {
@@ -33,7 +33,7 @@ const ItemCount = ({ stock}) => {
           +
         </Button>
       </div>
-      <Button onClick={Sale}> Comprar </Button>
+      <Button onClick={setShowButton}> Comprar </Button>
     </div>
   );
 };
