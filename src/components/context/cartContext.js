@@ -9,9 +9,9 @@ const CartProvider = ({ children}) => {
   const [orderLength, setOrderLength ] = useState(0);
   const [order, setOrder] = useState(0);
   const [showButton, setShowButton] = useState(false);
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  // const [open, setOpen] = React.useState(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
 
   const addProductToCart = (products) => {
     let isInCart = cartListItems.find(
@@ -19,13 +19,19 @@ const CartProvider = ({ children}) => {
     );
     if (!isInCart) {
       setTotalPrice(totalPrice + products.price*order)
-      setCartListItems(() => [products]);
+      setCartListItems(cartListItems=> [...cartListItems, products]);
+      localStorage.setItem('products', JSON.stringify([...cartListItems, products]))
       setOrderLength(cartListItems.length)
     }
   };
 
   const deleteProduct = (products) => {
     setCartListItems(cartListItems.filter( (cartProduct) => cartProduct.id !== products.id) )
+}
+
+const cleanCartProducts = () => {
+  setTotalPrice(0)
+  setCartListItems([])
 }
 
   const data = {
@@ -36,12 +42,13 @@ const CartProvider = ({ children}) => {
     orderLength,
     order, 
     setOrder, 
-    open, 
+    // open, 
     showButton, 
-    handleOpen, 
-    handleClose, 
+    // handleOpen, 
+    // handleClose, 
     setShowButton, 
-    addProductToCart
+    addProductToCart, 
+    cleanCartProducts
   };
   return <CartContext.Provider value={data}>{children}</CartContext.Provider>;
 };

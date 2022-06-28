@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import {
   Card,
   CardImg,
@@ -11,9 +11,9 @@ import {
 } from "reactstrap";
 import ItemCount from "../itemCount/ItemCount";
 import { CartContext } from "../context/cartContext";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import Contacto from "../pages/Contacto";
+// import Modal from "@mui/material/Modal";
+// import Box from "@mui/material/Box";
+// import Contacto from "../pages/Contacto";
 
 const ItemCardDetail = ({
   title,
@@ -22,16 +22,16 @@ const ItemCardDetail = ({
   stock,
   id,
   description,
-  style,
+  // style,
   products,
 }) => {
   const {
-    handleOpen,
-    handleClose,
+    // handleOpen,
+    // handleClose,
     showButton,
     addProductToCart,
-    open,
-    totalPrice,
+    // open,
+    // totalPrice,
   } = useContext(CartContext);
   return (
     <div>
@@ -50,15 +50,15 @@ const ItemCardDetail = ({
         <ItemCount stock={stock} price={price} id={id} />
       ) : (
         <div>
-          <p>Total: {totalPrice}</p>
+          {/* <p>Total: {totalPrice}</p> */}
           <Button
             onClick={addProductToCart(products)}
           >
-            <Link to="/Carrito" onClick={handleOpen}>
+            {/* <Link to="/Carrito"> */}
               Finalizar Compra
-            </Link>
+            {/* </Link> */}
           </Button>
-          <Modal
+          {/* <Modal
             open={open}
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
@@ -74,7 +74,7 @@ const ItemCardDetail = ({
                 description={description}
               />
             </Box>
-          </Modal>
+          </Modal> */}
         </div>
       )}
     </div>

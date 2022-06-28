@@ -33,7 +33,7 @@ const ItemCount = ({ stock}) => {
           +
         </Button>
       </div>
-      <Button onClick={setShowButton}> Comprar </Button>
+      <Button onClick={()=>setShowButton(true)}> Comprar </Button>
     </div>
   );
 };

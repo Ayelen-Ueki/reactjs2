@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Form, Input, FormGroup, Label, Button } from "reactstrap";
 import { collection, addDoc } from "firebase/firestore";
 import db from "../firebase/firebaseConfig";
 import MessageSuccess from "../MessageSuccess/MessageSuccess";
 import "./Contacto.css";
+import { CartContext } from "../context/cartContext";
+import { useNavigate } from "react-router-dom"
 
-const Contacto = ({  title,
-  price,
-  id,
-  order
-}) => {
+const Contacto = () => {
+  const { totalPrice, cartListItems, cleanCartProducts } =
+    useContext(CartContext);
 
   const initialState = {
     name: "",
@@ -20,18 +20,23 @@ const Contacto = ({  title,
   const orderState = {
     buyer: {},
 
-
-        id: id,
-        title: title,
-        price: price,
-
-    total: order * price,
+    items: cartListItems.map((items) => {
+      return { 
+        id: items.id,
+        title: items.title, 
+        price: items.price };
+    }),
+    total: totalPrice,
   };
 
   const [contacto, setContacto] = useState(initialState);
   const [contactoID, setContactoId] = useState("");
-
-  const [orders, setOrder] = useState(orderState);
+  const navigate=useNavigate()
+  const [orders, setOrders] = useState(orderState);
+  
+  const finishOrder = () => {
+    navigate('/')
+}
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -45,16 +50,18 @@ const Contacto = ({  title,
     });
     setContactoId(docRef.id);
     setContacto(initialState);
-    setOrder({ ...orders, buyer: contacto });
-    pushToFirebase(orders)
+    setOrders({ ...orders, buyer: contacto });
+    pushToFirebase(orders);
   };
 
-const pushToFirebase = async (newOrders) => {
-  const ordersFirebase = collection(db, 'orders')
-  const ordersDoc = await  addDoc(ordersFirebase, newOrders)
-  console.log(ordersDoc);
-}
- 
+  const pushToFirebase = async (newOrders) => {
+    const ordersFirebase = collection(db, "orders");
+    const ordersDoc = await addDoc(ordersFirebase, newOrders);
+    console.log(ordersDoc);
+    cleanCartProducts()
+    finishOrder()
+  };
+
   return (
     <Form onSubmit={onSubmit} className="Form">
       <FormGroup className="mb-2 me-sm-2 mb-sm-0">
