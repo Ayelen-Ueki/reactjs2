@@ -1,0 +1,16 @@
+.itemDetail{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin: 15px;
+    padding: 15px;
+    background-color:rgb(252, 233, 88);
+}
+
+.itemCardDetail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

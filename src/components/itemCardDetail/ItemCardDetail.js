@@ -11,6 +11,7 @@ import {
 } from "reactstrap";
 import ItemCount from "../itemCount/ItemCount";
 import { CartContext } from "../context/cartContext";
+// import "./ItemCardDetail.css"
 // import Modal from "@mui/material/Modal";
 // import Box from "@mui/material/Box";
 // import Contacto from "../pages/Contacto";
@@ -33,7 +34,7 @@ const ItemCardDetail = ({
     // totalPrice,
   } = useContext(CartContext);
   return (
-    <div >
+    <div className="itemDetail">
       <Card>
         <CardImg alt="Card image cap" img src={image} width="100%" />
         <CardBody>

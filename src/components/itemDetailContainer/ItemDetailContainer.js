@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import {doc, getDoc} from "firebase/firestore";
 // import { collection, getDocs, query, where } from "firebase/firestore";
 import db from "../firebase/firebaseConfig";
+import "./itemDetailContainer.css";
 
 
 const ItemDetailContainer = () => {
@@ -33,7 +34,7 @@ const ItemDetailContainer = () => {
       .then( (product) => {
         setProducts(product)
       })
-  }, [id])
+  }, [])
 
     const getProduct = async() => {
       const docRef = doc(db, "feelinit", id)
@@ -75,7 +76,7 @@ const ItemDetailContainer = () => {
   // };
 
   return (
-    <div>
+    <div className="itemCardDetail">
       {id && (
         <div>
               <ItemCardDetail
