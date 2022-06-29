@@ -34,7 +34,7 @@ const ItemDetailContainer = () => {
       .then( (product) => {
         setProducts(product)
       })
-  }, [])
+  }, [id])
 
     const getProduct = async() => {
       const docRef = doc(db, "feelinit", id)

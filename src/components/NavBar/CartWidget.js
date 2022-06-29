@@ -42,7 +42,7 @@ const CartWidget = () => {
             )}
             {cartListItems.map((item) => {
               return (
-                <div key={item.id} className="cartitems">
+                <div key={item.id}  className="cartitems">
                     {/* <img src={`/${item.image}`} alt="prod carrito" />
                      */}
                     <img src={item.image} alt="prod carrito"   className="image"/>

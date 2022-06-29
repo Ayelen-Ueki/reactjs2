@@ -99,7 +99,7 @@ const CartOrder = () => {
         />
       </FormGroup>
       <Link to="/cart">
-      <Button onSubmit={onSubmit} >Submit</Button>
+      <Button onSubmit={onSubmit} onClick={()=>setShowModal(true)} >Submit</Button>
       </Link>
     </Form>
     <Modal title={success ? 'Compra exitosa' : 'Formulario de contacto'} open={showModal} handleClose={() => setShowModal(false)}>

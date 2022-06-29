@@ -14,15 +14,15 @@ const CartProvider = ({ children}) => {
   // const handleClose = () => setOpen(false);
 
   const addProductToCart = (products) => {
-    // let isInCart = cartListItems.find(
-    //   (cartItems) => cartItems.id === products.id
-    // );
-    // if (!isInCart) {
+    let isInCart = cartListItems.find(
+      (cartItems) => cartItems.id === products.id
+    );
+    if (!isInCart) {
       setTotalPrice(totalPrice + products.price*order)
       setCartListItems(cartListItems=> [...cartListItems, products]);
       localStorage.setItem('products', JSON.stringify([...cartListItems, products]))
       
-    // }
+    }
     setOrderLength(cartListItems.length)
   };
 
