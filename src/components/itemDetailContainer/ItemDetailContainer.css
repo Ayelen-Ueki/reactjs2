@@ -1,8 +1,0 @@
-.itemDetail{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 15px;
-    background-color:rgb(252, 233, 88);
-}

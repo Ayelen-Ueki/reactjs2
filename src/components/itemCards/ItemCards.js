@@ -8,11 +8,12 @@ import {
   Button
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import "./ItemCards.css"
 
 //Son las cartas en las que se van a mostrar los productos
 const ItemCards = ({title, price, image, description, id}) => {
     return (
-        <div>
+        <div className="itemCards">
           <Card>  
             <CardImg alt="Card image cap" img src={image} width="100%" />
             <CardBody>

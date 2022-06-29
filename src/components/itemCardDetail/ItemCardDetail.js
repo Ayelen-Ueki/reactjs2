@@ -33,7 +33,7 @@ const ItemCardDetail = ({
     // totalPrice,
   } = useContext(CartContext);
   return (
-    <div>
+    <div >
       <Card>
         <CardImg alt="Card image cap" img src={image} width="100%" />
         <CardBody>
