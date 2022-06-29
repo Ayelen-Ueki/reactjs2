@@ -8,7 +8,7 @@ import "./Contacto.css"
 const initialState = {
   name: "",
   email: "",
-  address: "",
+  phone: "",
 };
 
 const Contacto = () => {
@@ -20,16 +20,22 @@ const Contacto = () => {
     setContacto({ ...contacto, [name]: value });
   };
 
-  const onSubmit = async (e) => {
+  
+  const onSubmit = (e) => {
     e.preventDefault();
-    const docRef = await addDoc(collection(db, "contacto"), {
-      contacto,
-    });
-    setContactoId(docRef.id);
+    setContacto({ ...contacto, contacto: contacto });
+    saveData({ ...contacto, contacto: contacto });
+  };
+
+  const saveData = async (newOrder) => {
+    const orderFirebase = collection(db, "contacto");
+    const orderDoc = await addDoc(orderFirebase, newOrder);
+    setContactoId(orderDoc.id);
     setContacto(initialState);
   };
+
   return (
-    <Form onSubmit={onSubmit} className="Form">
+    <Form  className="Form">
       <FormGroup className="mb-2 me-sm-2 mb-sm-0">
         <Label className="me-sm-2" for="exampleName">
           Name
@@ -50,27 +56,28 @@ const Contacto = () => {
         <Input
           id="exampleEmail"
           name="email"
-          placeholder="something@idk.cool"
+          placeholder="algo@mail.com"
           type="email"
           value={contacto.email}
           onChange={onChange}
         />
       </FormGroup>
       <FormGroup className="mb-2 me-sm-2 mb-sm-0">
-        <Label className="me-sm-2" for="exampleAddress">
-          Address
+        <Label className="me-sm-2" for="examplePhone">
+          Celular
         </Label>
         <Input
-          id="exampleAddress"
-          name="address"
-          placeholder="Where do you live?"
-          type="address"
-          value={contacto.address}
+          id="examplePhone"
+          name="phone"
+          placeholder="A dónde podemos llamarte?"
+          type="phone"
+          value={contacto.phone}
           onChange={onChange}
         />
       </FormGroup>
-      <Button>Submit</Button>
+      <Button onSubmit={onSubmit}>Submit</Button>
       {contactoID && <MessageSuccess contactoID={contactoID} />}
+      
     </Form>
   );
 };

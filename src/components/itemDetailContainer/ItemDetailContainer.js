@@ -1,4 +1,4 @@
-import ItemDetail from "../itemDetail/ItemDetail";
+import ItemCardDetail from "../itemCardDetail/ItemCardDetail";
 // import items from "../item/Item";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -78,7 +78,7 @@ const ItemDetailContainer = () => {
     <div>
       {id && (
         <div className="itemDetail">
-              <ItemDetail
+              <ItemCardDetail
                 title={products.title}
                 price={products.price}
                 image={products.image}

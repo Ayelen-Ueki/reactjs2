@@ -22,7 +22,6 @@ const ItemCardDetail = ({
   stock,
   id,
   description,
-  // style,
   products,
 }) => {
   const {
