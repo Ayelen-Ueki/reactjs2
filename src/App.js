@@ -28,8 +28,8 @@ function App() {
           <Route path="/Recetas" element={<Recetas/>} />
           <Route path="/product/:id" element={<ItemDetailContainer />} />
           <Route path="/category/:category" element={<ItemListContainer />} />
-          <Route path="/cart" element={<ItemCart/>}/>
           <Route path="/CarritoCompras" element={<CartOrder/>}/>
+          <Route path="/cart" element={<ItemCart/>}/>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

@@ -28,6 +28,7 @@ const CartProvider = ({ children}) => {
 
   const deleteProduct = (products) => {
     setCartListItems(cartListItems.filter( (cartProduct) => cartProduct.id !== products.id) )
+    setOrderLength(0)
 }
 
 const cleanCartProducts = () => {

@@ -98,7 +98,7 @@ const CartOrder = () => {
           onChange={onChange}
         />
       </FormGroup>
-      <Link to="/cart">
+      <Link to="/">
       <Button onSubmit={onSubmit} onClick={()=>setShowModal(true)} >Submit</Button>
       </Link>
     </Form>

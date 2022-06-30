@@ -54,7 +54,7 @@ const ItemCardDetail = ({
           <Button
             onClick={addProductToCart(products)}
           >
-            <Link to="/">
+            <Link to="/cart">
               Finalizar Compra
             </Link>
           </Button>
