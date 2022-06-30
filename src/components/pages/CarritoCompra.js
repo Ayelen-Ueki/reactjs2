@@ -53,6 +53,7 @@ const CartOrder = () => {
     const orderDoc = await addDoc(orderFirebase, newOrder);
     console.log("orden generada: ", orderDoc.id);
     setSuccess(orderDoc.id)
+    console.log(orderDoc.id)
     cleanCartProducts();
   };
 
@@ -124,7 +125,7 @@ const CartOrder = () => {
                 name="phone"
                 label="Telefono" 
                 variant="outlined" 
-                value={contacto.phone}
+                value={contacto.number}
                 onChange={onChange}
             />
             <TextField 
