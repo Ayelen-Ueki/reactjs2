@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Form, Input, FormGroup, Label, Button } from "reactstrap";
+import { Form, Input, FormGroup, Label, Button, FormText } from "reactstrap";
 import { collection, addDoc } from "firebase/firestore";
 import db from "../firebase/firebaseConfig";
 import "./Contacto.css";
@@ -9,6 +9,7 @@ import Modal from '../modal/Modal'
 import TextField from '@mui/material/TextField';
 import { Container } from "@mui/material";
 import { Link } from "react-router-dom";
+import "./CarritoCompra.css"
 
 const CartOrder = () => {
   const { totalPrice, cartListItems, cleanCartProducts } =
@@ -60,7 +61,8 @@ const CartOrder = () => {
   return (
     <Container className='container-general'> 
     <Form className="Form">
-      <FormGroup className="mb-2 me-sm-2 mb-sm-0">
+    <FormText className="formRequest">(Por favor, completa con tus datos para finalizar el pedido)</FormText>
+      <FormGroup className="mb-2 me-sm-2 mb-sm-0" >
         <Label className="me-sm-2" for="exampleName">
           Name
         </Label>
