@@ -16,6 +16,7 @@ const ItemCardDetail = ({ products }) => {
   const {
     showButton,
     setShowButton,
+    totalPrice
   } = useContext(CartContext);
   return (
     <div className="itemDetail">
@@ -34,6 +35,7 @@ const ItemCardDetail = ({ products }) => {
         <ItemCount products={products} setShowButton={setShowButton} />
       ) : (
         <div>
+          <p>Total a Pagar: $ {totalPrice}</p>
           <Button>
             <Link to="/cart">Finalizar Compra</Link>
           </Button>
