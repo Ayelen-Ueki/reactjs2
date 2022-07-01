@@ -9,9 +9,6 @@ const CartProvider = ({ children}) => {
   const [orderLength, setOrderLength ] = useState(0);
   const [order, setOrder] = useState(0);
   const [showButton, setShowButton] = useState(false);
-  // const [open, setOpen] = React.useState(false);
-  // const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
 
   const addProductToCart = (products) => {
     let isInCart = cartListItems.find(
@@ -23,7 +20,8 @@ const CartProvider = ({ children}) => {
       localStorage.setItem('products', JSON.stringify([...cartListItems, products]))
       
     }
-    setOrderLength(cartListItems.length)
+    console.log(products)
+    setOrderLength(order)
   };
 
   const deleteProduct = (products) => {
@@ -44,10 +42,7 @@ const cleanCartProducts = () => {
     orderLength,
     order, 
     setOrder, 
-    // open, 
     showButton, 
-    // handleOpen, 
-    // handleClose, 
     setShowButton, 
     addProductToCart, 
     cleanCartProducts

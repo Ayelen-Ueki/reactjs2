@@ -1,22 +1,33 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import { Button } from "reactstrap";
 import "./ItemCount.css";
 import { CartContext } from "../context/cartContext";
 
 
-const ItemCount = ({ stock}) => {
+const ItemCount = ({ products, setShowButton}) => {
+  const [count, SetCount] =useState(0)
   
-  const { order, setOrder, setShowButton } = useContext(CartContext);
+  const { addProductToCart, setOrder } = useContext(CartContext);
 
   const addCount = () => {
-    if (order < stock) {
-      setOrder(order + 1);
+    if (count < products.stock) {
+      SetCount(count + 1);
     }
   };
 
   const removeCount = () => {
-    setOrder(order - 1);
+    SetCount(count - 1);
   };
+
+  const addProduct=()=> {
+    setShowButton(true)
+    setOrder(count)
+    const newProduct = products
+    newProduct.cantidad = count
+    addProductToCart(newProduct)
+  }
+
+  setOrder(count);
 
   return (
     <div>
@@ -24,16 +35,16 @@ const ItemCount = ({ stock}) => {
         <Button
           className="counterButton"
           onClick={removeCount}
-          disabled={order === 0}
+          disabled={count === 0}
         >
           -
         </Button>
-        <p>{order}</p>
+        <p>{count}</p>
         <Button className="counterButton" onClick={addCount}>
           +
         </Button>
       </div>
-      <Button onClick={()=>setShowButton(true)}> Comprar </Button>
+      <Button onClick={()=>addProduct()}> Comprar </Button>
     </div>
   );
 };

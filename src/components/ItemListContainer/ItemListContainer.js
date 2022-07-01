@@ -36,8 +36,8 @@ const ItemListContainer = () => {
   //     })
   // }, [])
   const getProducts = async () => {
-//Traemos con GetDocs todos los documentos de nuestra collection
-    const productSnap= await getDocs(collection(db, "feelinit"));
+    //Traemos con GetDocs todos los documentos de nuestra collection
+    const productSnap = await getDocs(collection(db, "feelinit"));
     // Recorremos con un map todos los documentos de nuestra collection y los guardamos en una nueva constante
     const productList = productSnap.docs.map((doc) => {
       //Guardamos la data del doc en una variable
@@ -71,38 +71,44 @@ const ItemListContainer = () => {
   };
 
   return (
-<div>
+    <div>
       {!category ? (
         <div className="items">
           {products.map(({ title, price, image, id, stock }) => {
             return (
+              <div key={id}>
                 <ItemList
                   title={title}
                   price={price}
                   image={image}
                   stock={stock}
                   id={id}
+                  key={id}
                 />
+              </div>
             );
           })}
-          </div>
+        </div>
       ) : (
-        <div  className="items">
+        <div className="items">
           {products.map(({ title, price, image, id, stock }) => {
             return (
+              <div key={id}>
                 <ItemList
                   title={title}
                   price={price}
                   image={image}
                   stock={stock}
                   id={id}
+                  key={id}
                 />
+              </div>
             );
           })}
         </div>
       )}
-</div>
-  )
+    </div>
+  );
 };
 
 export default ItemListContainer;

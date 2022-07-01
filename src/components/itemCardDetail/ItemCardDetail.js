@@ -11,70 +11,32 @@ import {
 } from "reactstrap";
 import ItemCount from "../itemCount/ItemCount";
 import { CartContext } from "../context/cartContext";
-// import "./ItemCardDetail.css"
-// import Modal from "@mui/material/Modal";
-// import Box from "@mui/material/Box";
-// import Contacto from "../pages/Contacto";
 
-const ItemCardDetail = ({
-  title,
-  price,
-  image,
-  stock,
-  id,
-  description,
-  products,
-}) => {
+const ItemCardDetail = ({ products }) => {
   const {
-    // handleOpen,
-    // handleClose,
     showButton,
-    addProductToCart,
-    // open,
-    // totalPrice,
+    setShowButton,
   } = useContext(CartContext);
   return (
     <div className="itemDetail">
       <Card>
-        <CardImg alt="Card image cap" img src={image} width="100%" />
+        <CardImg alt="Card image cap" img src={products.image} width="100%" />
         <CardBody>
-          <CardTitle tag="h5">{title}</CardTitle>
+          <CardTitle tag="h5">{products.title}</CardTitle>
           <CardSubtitle className="mb-2 text-muted" tag="h6">
-            {description}
+            {products.description}
           </CardSubtitle>
-          <CardText>${price}</CardText>
+          <CardText>${products.price}</CardText>
         </CardBody>
       </Card>
       {/* Condicional ternario. El signo de admiración al principio niega lo que le sigue} */}
       {!showButton ? (
-        <ItemCount stock={stock} price={price} id={id} />
+        <ItemCount products={products} setShowButton={setShowButton} />
       ) : (
         <div>
-          {/* <p>Total: {totalPrice}</p> */}
-          <Button
-            onClick={addProductToCart(products)}
-          >
-            <Link to="/cart">
-              Finalizar Compra
-            </Link>
+          <Button>
+            <Link to="/cart">Finalizar Compra</Link>
           </Button>
-          {/* <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-              <Contacto
-                title={title}
-                price={price}
-                image={image}
-                stock={stock}
-                id={id}
-                description={description}
-              />
-            </Box>
-          </Modal> */}
         </div>
       )}
     </div>
