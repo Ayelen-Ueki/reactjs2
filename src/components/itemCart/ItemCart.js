@@ -20,7 +20,7 @@ const ItemCart = () => {
     useContext(CartContext);
   return (
     <div>
-      {cartListItems.lenght !== 0 ? (
+      {cartListItems.length !== 0 ? (
       <>
       {cartListItems.map((item) => {
         return (
@@ -34,29 +34,16 @@ const ItemCart = () => {
                 </CardSubtitle>
                 <CardText>${totalPrice}</CardText>
                 <div className="Buttons">
-                <Button>
-                  <Link
-                    style={{ textDecoration: "none", color: "black" }}
-                    to={`/product/${item.id}`}
-                  >
-                    Ver detalle
-                  </Link>
-                </Button>
                 <Button onClick={() => deleteProduct(item)}>
                   <DeleteIcon />
                 </Button>
-                <Link to="/CarritoCompras">
-                <Button style={{ cursor: "pointer" }} className="finish">
-                Finalizar
-                </Button>
-                </Link>
                 </div>
               </CardBody>
             </Card>
           </div>
         );
       })}
-      {cartListItems.lenght !== 0 && <CartOrder/>}
+      {cartListItems.length !== 0 && <CartOrder/>}
       </>
 ):(
 <h2>No tienes productos en tu carrito</h2>

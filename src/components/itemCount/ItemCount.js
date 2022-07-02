@@ -11,8 +11,10 @@ const ItemCount = ({ products, setShowButton, showButton }) => {
   const [limite, setLimite] = useState(true);
 
   const addCount = () => {
-    if (count < products.stock) {
-      SetCount(count + 1);
+    if (cartAmount <= products.stock) {
+      if (count <= products.stock) {
+        SetCount(count + 1);
+      }
     }
   };
 
@@ -21,7 +23,7 @@ const ItemCount = ({ products, setShowButton, showButton }) => {
   };
 
   const addProduct = () => {
-    if (cartAmount <= 15) {
+    if (cartAmount <= products.stock) {
       setShowButton(!showButton);
       const newProduct = products;
       newProduct.quantity = count;
@@ -48,24 +50,24 @@ const ItemCount = ({ products, setShowButton, showButton }) => {
           <Button className="counterButton" onClick={addCount}>
             +
           </Button>
-          <Button onClick={() => addProduct()}> Comprar </Button>{" "}
+          <Button onClick={() => addProduct() } disabled={count> products.stock}> Comprar </Button>{" "}
         </div>
       ) : (
         <div className="counter">
-        <Button
-          className="counterButton"
-          onClick={removeCount}
-          disabled={count === 0}
-        >
-          -
-        </Button>
-        <p>{count}</p>
-        <Button className="counterButton" onClick={addCount}>
-          +
-        </Button>
-        <Button onClick={() => addProduct()}> Comprar </Button>{" "}
-        <p>Lo sentimos, ya no hay stock</p>
-      </div>
+          <Button
+            className="counterButton"
+            onClick={removeCount}
+            disabled={count === 0}
+          >
+            -
+          </Button>
+          <p>{count}</p>
+          <Button className="counterButton" onClick={addCount}>
+            +
+          </Button>
+          <Button onClick={() => addProduct()}> Comprar </Button>{" "}
+          <p>Lo sentimos, ya no hay stock</p>
+        </div>
       )}
     </div>
   );

@@ -23,13 +23,11 @@ const CartProvider = ({ children }) => {
       );
     } else {
       isInCart.quantity += product.quantity;
-      setCartListItems((cartListItems) => [...cartListItems, product]);
-      // setcartAmount(isInCart.quantity);
+      setCartListItems((cartListItems))
     }
-    console.log(cartAmount)
     setOrderLength(cartListItems.length+1);
   };
-
+  console.log(cartAmount)
   const deleteProduct = () => {
     setTotalPrice(0);
     setOrderLength(0);

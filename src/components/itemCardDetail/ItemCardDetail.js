@@ -36,7 +36,9 @@ const ItemCardDetail = ({ products }) => {
           <Button>
             <Link to="/cart">Finalizar Compra</Link>
           </Button>
-          <Button onClick={()=>setShowButton(!showButton)}>Seguir comprando</Button>
+          <Link to="/">
+            <Button>Seguir comprando</Button>
+          </Link>
         </div>
       )}
     </div>
