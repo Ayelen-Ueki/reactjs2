@@ -4,10 +4,10 @@ import "./ItemCount.css";
 import { CartContext } from "../context/cartContext";
 
 
-const ItemCount = ({ products, setShowButton}) => {
+const ItemCount = ({ products, setShowButton,showButton}) => {
   const [count, SetCount] =useState(0)
   
-  const { addProductToCart, setOrder } = useContext(CartContext);
+  const { addProductToCart } = useContext(CartContext);
 
   const addCount = () => {
     if (count < products.stock) {
@@ -20,14 +20,12 @@ const ItemCount = ({ products, setShowButton}) => {
   };
 
   const addProduct=()=> {
-    setShowButton(true)
-    setOrder(count)
+    setShowButton(!showButton)
     const newProduct = products
-    newProduct.cantidad = count
+    newProduct.quantity = count
     addProductToCart(newProduct)
   }
 
-  setOrder(count);
 
   return (
     <div>

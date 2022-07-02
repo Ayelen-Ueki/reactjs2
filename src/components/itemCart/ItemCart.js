@@ -12,6 +12,7 @@ import React, { useContext } from "react";
 import { CartContext } from "../context/cartContext";
 import "./ItemCart.css";
 import DeleteIcon from "@mui/icons-material/Delete";
+import CartOrder from "../pages/CarritoCompra";
 
 //Son las cartas en las que se van a mostrar los productos
 const ItemCart = () => {
@@ -19,6 +20,8 @@ const ItemCart = () => {
     useContext(CartContext);
   return (
     <div>
+      {cartListItems.lenght !== 0 ? (
+      <>
       {cartListItems.map((item) => {
         return (
           <div className="itemCart">
@@ -53,8 +56,13 @@ const ItemCart = () => {
           </div>
         );
       })}
+      {cartListItems.lenght !== 0 && <CartOrder/>}
+      </>
+):(
+<h2>No tienes productos en tu carrito</h2>
+)}
     </div>
-  );
+  )
 };
 
 export default ItemCart;

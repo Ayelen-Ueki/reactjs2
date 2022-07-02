@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -13,11 +13,8 @@ import ItemCount from "../itemCount/ItemCount";
 import { CartContext } from "../context/cartContext";
 
 const ItemCardDetail = ({ products }) => {
-  const {
-    showButton,
-    setShowButton,
-    totalPrice
-  } = useContext(CartContext);
+  const { totalPrice } = useContext(CartContext);
+  const [showButton, setShowButton] = useState(false);
   return (
     <div className="itemDetail">
       <Card>
@@ -39,6 +36,7 @@ const ItemCardDetail = ({ products }) => {
           <Button>
             <Link to="/cart">Finalizar Compra</Link>
           </Button>
+          <Button onClick={()=>setShowButton(!showButton)}>Seguir comprando</Button>
         </div>
       )}
     </div>
