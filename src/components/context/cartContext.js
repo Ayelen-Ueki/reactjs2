@@ -14,7 +14,7 @@ const CartProvider = ({ children }) => {
       (cartItems) => cartItems.id === product.id
     );
     setTotalPrice(totalPrice + product.price * product.quantity);
-    setcartAmount(cartAmount + product.quantity);
+    setcartAmount(cartAmount + product.quantity );
     if (!isInCart) {
       setCartListItems((cartListItems) => [...cartListItems, product]);
       localStorage.setItem(
@@ -23,9 +23,11 @@ const CartProvider = ({ children }) => {
       );
     } else {
       isInCart.quantity += product.quantity;
-      setCartListItems(cartListItems);
+      setCartListItems((cartListItems) => [...cartListItems, product]);
+      // setcartAmount(isInCart.quantity);
     }
-    setOrderLength(isInCart.quantity);
+    console.log(cartAmount)
+    setOrderLength(cartListItems.length+1);
   };
 
   const deleteProduct = () => {
@@ -47,6 +49,7 @@ const CartProvider = ({ children }) => {
     orderLength,
     addProductToCart,
     cleanCartProducts,
+    cartAmount
   };
   return <CartContext.Provider value={data}>{children}</CartContext.Provider>;
 };

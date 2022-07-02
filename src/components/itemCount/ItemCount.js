@@ -1,13 +1,14 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import { Button } from "reactstrap";
 import "./ItemCount.css";
 import { CartContext } from "../context/cartContext";
 
+const ItemCount = ({ products, setShowButton, showButton }) => {
+  const [count, SetCount] = useState(0);
 
-const ItemCount = ({ products, setShowButton,showButton}) => {
-  const [count, SetCount] =useState(0)
-  
-  const { addProductToCart } = useContext(CartContext);
+  const { addProductToCart, cartAmount } = useContext(CartContext);
+
+  const [limite, setLimite] = useState(true);
 
   const addCount = () => {
     if (count < products.stock) {
@@ -19,17 +20,38 @@ const ItemCount = ({ products, setShowButton,showButton}) => {
     SetCount(count - 1);
   };
 
-  const addProduct=()=> {
-    setShowButton(!showButton)
-    const newProduct = products
-    newProduct.quantity = count
-    addProductToCart(newProduct)
-  }
-
+  const addProduct = () => {
+    if (cartAmount <= 15) {
+      setShowButton(!showButton);
+      const newProduct = products;
+      newProduct.quantity = count;
+      addProductToCart(newProduct);
+    } else {
+      alert("Lo sentimos, ya no hay stock");
+      setLimite(!limite);
+      setShowButton(!showButton);
+    }
+  };
 
   return (
     <div>
-      <div className="counter">
+      {limite ? (
+        <div className="counter">
+          <Button
+            className="counterButton"
+            onClick={removeCount}
+            disabled={count === 0}
+          >
+            -
+          </Button>
+          <p>{count}</p>
+          <Button className="counterButton" onClick={addCount}>
+            +
+          </Button>
+          <Button onClick={() => addProduct()}> Comprar </Button>{" "}
+        </div>
+      ) : (
+        <div className="counter">
         <Button
           className="counterButton"
           onClick={removeCount}
@@ -41,8 +63,10 @@ const ItemCount = ({ products, setShowButton,showButton}) => {
         <Button className="counterButton" onClick={addCount}>
           +
         </Button>
+        <Button onClick={() => addProduct()}> Comprar </Button>{" "}
+        <p>Lo sentimos, ya no hay stock</p>
       </div>
-      <Button onClick={()=>addProduct()}> Comprar </Button>
+      )}
     </div>
   );
 };
