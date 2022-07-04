@@ -16,7 +16,7 @@ import CartOrder from "../pages/CarritoCompra";
 
 //Son las cartas en las que se van a mostrar los productos
 const ItemCart = () => {
-  const { totalPrice, cartListItems, order, deleteProduct } =
+  const { totalPrice, cartListItems, cartAmount, deleteProduct } =
     useContext(CartContext);
   return (
     <div>
@@ -30,7 +30,7 @@ const ItemCart = () => {
               <CardBody>
                 <CardTitle tag="h5">{item.title}</CardTitle>
                 <CardSubtitle className="mb-2 text-muted" tag="h6">
-                  Cantidad: {order}
+                  Cantidad: {cartAmount}
                 </CardSubtitle>
                 <CardText>${totalPrice}</CardText>
                 <div className="Buttons">

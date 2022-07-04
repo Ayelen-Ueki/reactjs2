@@ -27,7 +27,7 @@ const CartProvider = ({ children }) => {
     }
     setOrderLength(cartListItems.length+1);
   };
-  console.log(cartAmount)
+
   const deleteProduct = () => {
     setTotalPrice(0);
     setOrderLength(0);
