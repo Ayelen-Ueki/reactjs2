@@ -29,10 +29,6 @@ const ItemCart = () => {
               <CardImg alt="Card image cap" img src={item.image} width="100%" />
               <CardBody>
                 <CardTitle tag="h5">{item.title}</CardTitle>
-                <CardSubtitle className="mb-2 text-muted" tag="h6">
-                  Cantidad: {cartAmount}
-                </CardSubtitle>
-                <CardText>${totalPrice}</CardText>
                 <div className="Buttons">
                 <Button onClick={() => deleteProduct(item)}>
                   <DeleteIcon />
@@ -43,7 +39,7 @@ const ItemCart = () => {
           </div>
         );
       })}
-      {cartListItems.length !== 0 && <CartOrder/>}
+      {cartListItems.length !== 0 && (<div> <p>Cantidad: {cartAmount}</p> <p>Total a pagar: ${totalPrice}</p><CartOrder/> </div>)}
       </>
 ):(
 <h2>No tienes productos en tu carrito</h2>
