@@ -21,31 +21,42 @@ const ItemCart = () => {
   return (
     <div>
       {cartListItems.length !== 0 ? (
-      <>
-      {cartListItems.map((item) => {
-        return (
-          <div className="itemCart">
-            <Card>
-              <CardImg alt="Card image cap" img src={item.image} width="100%" />
-              <CardBody>
-                <CardTitle tag="h5">{item.title}</CardTitle>
-                <div className="Buttons">
-                <Button onClick={() => deleteProduct(item)}>
+        <>
+          {cartListItems.map((item) => {
+            return (
+              <div className="itemCart">
+                <Card>
+                  <CardImg
+                    alt="Card image cap"
+                    img
+                    src={item.image}
+                    width="100%"
+                  />
+                  <CardBody>
+                    <CardTitle tag="h5">{item.title}</CardTitle>
+                  </CardBody>
+                </Card>
+              </div>
+            );
+          })}
+          {cartListItems.length !== 0 && (
+            <div>
+              {" "}
+              <p>Cantidad: {cartAmount}</p> <p>Total a pagar: ${totalPrice}</p>{" "}
+              <div className="Buttons">
+                <Button onClick={() => deleteProduct()}>
                   <DeleteIcon />
                 </Button>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
-        );
-      })}
-      {cartListItems.length !== 0 && (<div> <p>Cantidad: {cartAmount}</p> <p>Total a pagar: ${totalPrice}</p><CartOrder/> </div>)}
-      </>
-):(
-<h2>No tienes productos en tu carrito</h2>
-)}
+              </div>{" "}
+              <CartOrder />{" "}
+            </div>
+          )}
+        </>
+      ) : (
+        <h2>No tienes productos en tu carrito</h2>
+      )}
     </div>
-  )
+  );
 };
 
 export default ItemCart;
